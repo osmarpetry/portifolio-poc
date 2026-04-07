@@ -133,6 +133,10 @@ module.exports = [
         label: "GitHub",
         url: "https://github.com/osmarpetry/animation-principles-explorer",
       },
+      {
+        label: "Live",
+        url: "https://leafy-kashata-0beda8.netlify.app/",
+      }
     ],
     status: "active",
     visualMode: "placeholder",
@@ -165,7 +169,10 @@ module.exports = [
     summary:
       "Next.js frontend for the MoneyLion technical assessment, focused on timeline rendering and validation.",
     stack: ["Next.js", "TypeScript", "Material UI"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/lion-fe" }],
+    links: [
+      { label: "GitHub", url: "https://github.com/osmarpetry/lion-fe" },
+      { label: "Live", url: "https://lion-fe.vercel.app/timeline" },
+    ],
     status: "active",
     visualMode: "placeholder",
   },
@@ -177,7 +184,10 @@ module.exports = [
     summary:
       "Node.js backend for the MoneyLion technical assessment, handling API normalization and validation.",
     stack: ["Node.js", "TypeScript", "Express"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/lion-be" }],
+    links: [
+      { label: "GitHub", url: "https://github.com/osmarpetry/lion-be" },
+      { label: "Live", url: "https://lion-be.vercel.app/" },
+    ],
     status: "active",
     visualMode: "placeholder",
   },
@@ -203,7 +213,13 @@ module.exports = [
     summary:
       "Earlier Firebase-hosted movie browser that still helps show progression in product UI and frontend architecture.",
     stack: ["React", "Redux", "Firebase", "PWA"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/lumdb" }],
+    links: [
+      {
+        label: "GitHub",
+        url: "https://github.com/osmarpetry/lumdb",
+      },
+      { label: "Live", url: "https://lumdb-spa.netlify.app/" },
+    ],
     status: "archive",
     visualMode: "placeholder",
   },
@@ -374,6 +390,10 @@ module.exports = [
         label: "GitHub",
         url: "https://github.com/osmarpetry/bootstrap-resposive-site",
       },
+      {
+        label: "Live",
+        url: "https://incandescent-puppy-fff2fc.netlify.app/",
+      },
     ],
     status: "archive",
     visualMode: "placeholder",
@@ -457,6 +477,7 @@ module.exports = [
     stack: ["Next.js", "TypeScript"],
     links: [
       { label: "GitHub", url: "https://github.com/osmarpetry/lumdb-nextjs" },
+      { label: "Live", url: "https://lumdb-nextjs.vercel.app/" },
     ],
     status: "archive",
     visualMode: "placeholder",

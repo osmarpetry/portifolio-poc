@@ -193,6 +193,10 @@ const showcaseEntries = [
     ],
     links: [
       {
+        label: "Live",
+        url: "https://animation-principles-explorer.vercel.app/",
+      },
+      {
         label: "GitHub",
         url: "https://github.com/osmarpetry/animation-principles-explorer",
       },
@@ -238,11 +242,12 @@ const showcaseEntries = [
     sourceRepos: ["lion-fe", "lion-be"],
     images: [
       {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
+        src: "/assets/images/screenshots/shared/cover.png",
         alt: "Placeholder cover for MoneyLion demo project.",
       },
     ],
     links: [
+      { label: "Live", url: "https://lion-fe.vercel.app/timeline" },
       { label: "Frontend", url: "https://github.com/osmarpetry/lion-fe" },
       { label: "Backend", url: "https://github.com/osmarpetry/lion-be" },
     ],
@@ -281,11 +286,14 @@ const showcaseEntries = [
     sourceRepos: ["lumdb"],
     images: [
       {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
+        src: "/assets/images/projects/lumdb/cover.png",
         alt: "Placeholder cover for Lumdb project.",
       },
     ],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/lumdb" }],
+    links: [
+      { label: "GitHub", url: "https://github.com/osmarpetry/lumdb" },
+      { label: "Live", url: "https://lumdb-spa.netlify.app/" },
+    ],
     layout: "medium",
     stack: ["React", "Redux", "Firebase", "PWA"],
   },
@@ -533,6 +541,10 @@ const showcaseEntries = [
         label: "GitHub",
         url: "https://github.com/osmarpetry/bootstrap-resposive-site",
       },
+      {
+        label: "Live",
+        url: "https://incandescent-puppy-fff2fc.netlify.app/",
+      },
     ],
     layout: "archive",
     stack: ["HTML", "CSS", "Bootstrap"],
@@ -652,8 +664,8 @@ const showcaseEntries = [
     sourceRepos: ["lumdb-nextjs"],
     images: [
       {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder.",
+        src: "/assets/images/projects/lumdb-nextjs/cover.png",
+        alt: "Cover for Lumdb Next.js project.",
       },
     ],
     links: [
