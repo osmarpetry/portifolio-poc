@@ -1,0 +1,15 @@
+<section class="projects-tier-explainer" aria-label="Tier guide">
+  <div class="tier-meaning-grid">
+    {% for key, tier in catalog.tierDescriptions %}
+      <article class="tier-meaning-card">
+        <p class="eyebrow">
+          <a class="section-title-link" href="/projects/#tier-{{ key }}">{{ tier.label }}</a>
+        </p>
+        <h2 class="tier-meaning-card__title">
+          <a class="section-title-link" href="/projects/#tier-{{ key }}">{{ tier.title }}</a>
+        </h2>
+        <p class="tier-meaning-card__summary">{{ tier.meaning }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>

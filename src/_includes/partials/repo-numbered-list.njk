@@ -1,0 +1,23 @@
+{#
+  repo-numbered-list.njk
+  Renders a numbered text list of repos for a given tier.
+
+  Context:
+    tierRepos   — array of repo objects from catalog.tier1Repos / tier2Repos / tier3Repos
+    tierNum     — "1" | "2" | "3" (used for anchor links)
+#}
+<ol class="repo-numbered-list" aria-label="Repository list">
+  {% for repo in tierRepos %}
+    <li class="repo-numbered-list__item">
+      <span class="repo-numbered-list__number" aria-hidden="true">{{ loop.index }}</span>
+      <a
+        class="repo-numbered-list__link"
+        href="/projects/tier-{{ tierNum }}/#{{ repo.entryId }}"
+        title="{{ repo.summary }}"
+      >{{ repo.title }}</a>
+      {% if repo.stack and repo.stack.length %}
+        <span class="repo-numbered-list__stack">{{ repo.stack | join(" · ") }}</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ol>

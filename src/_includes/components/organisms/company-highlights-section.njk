@@ -1,0 +1,23 @@
+<section class="section section-company-highlights" id="company-work" aria-labelledby="company-highlights-heading">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Company Work</p>
+      <h2 id="company-highlights-heading">
+        <a class="section-title-link" href="/#company-work">Companies and products.</a>
+      </h2>
+      <p>One project per company on the landing page, with the full company breakdown kept in the dedicated company page.</p>
+    </div>
+
+    <div class="project-grid">
+      {% for project in catalog.homeCompanyProjects %}
+        <div class="project-card-frame" id="company-highlight-{{ project.companySlug }}">
+          {% include "partials/project-card.njk" %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="tier-section__cta">
+      <a class="action-link action-link--tier" href="/companies/">See all company projects</a>
+    </div>
+  </div>
+</section>

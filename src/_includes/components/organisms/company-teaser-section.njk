@@ -1,0 +1,30 @@
+<section class="section section-company-teaser" id="company-work" aria-labelledby="company-teaser-heading">
+  <div class="container">
+    {% set headingEyebrow = "Company Work" %}
+    {% set headingTitle = "Companies and products." %}
+    {% set headingId = "company-teaser-heading" %}
+    {% set headingDescription = "Professional work across " ~ (companies | length) ~ " companies spanning product, platform, and consulting engagements." %}
+    {% set headingLevel = "h2" %}
+    {% include "components/molecules/section-heading.njk" %}
+
+    <ul class="company-teaser-list" aria-label="Company list">
+      {% for company in companies %}
+        <li class="company-teaser-item">
+          <a class="company-teaser-item__link" href="/companies/#company-{{ company.slug }}">
+            <span class="company-teaser-item__name">{{ company.name }}</span>
+            <span class="company-teaser-item__meta">
+              <span class="company-teaser-item__role">{{ company.role }}</span>
+              <span class="company-teaser-item__sep" aria-hidden="true">·</span>
+              <span class="company-teaser-item__period">{{ company.period }}</span>
+              <span class="company-teaser-item__count">{{ company.projects | length }} project{% if company.projects | length != 1 %}s{% endif %}</span>
+            </span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="company-teaser-cta">
+      <a class="action-link action-link--tier" href="/companies/">Browse company work</a>
+    </div>
+  </div>
+</section>

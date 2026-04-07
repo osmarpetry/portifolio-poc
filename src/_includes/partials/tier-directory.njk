@@ -1,0 +1,81 @@
+{#
+  tier-directory.njk
+  Homepage section that replaces the old project gallery.
+  Renders three tier blocks — each with a numbered repo list and a CTA.
+
+  No project images are rendered here. Homepage stays lightweight.
+  The tier pages carry the image-heavy experience.
+#}
+<section class="section section-tier-directory" id="selected-work" aria-labelledby="tier-directory-heading">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Work</p>
+      <h2 id="tier-directory-heading">Projects by tier.</h2>
+      <p>Fifty-one public repositories, organized by depth and relevance. Click any repo to go directly to its showcase entry.</p>
+    </div>
+
+    <div class="tier-directory">
+
+      {# ── Tier 1 ─────────────────────────────────────────────────────────── #}
+      <div class="tier-directory-block tier-directory-block--1">
+        <div class="tier-directory-header">
+          <div class="tier-directory-header__meta">
+            <span class="tier-badge tier-badge--1">Tier 1</span>
+            <span class="tier-directory-header__count">{{ catalog.tier1Repos | length }} repos</span>
+          </div>
+          <h3 class="tier-directory-header__title">{{ catalog.tierDescriptions["1"].title }}</h3>
+          <p class="tier-directory-header__description">{{ catalog.tierDescriptions["1"].description }}</p>
+        </div>
+        {% set tierRepos = catalog.tier1Repos %}
+        {% set tierNum = "1" %}
+        {% include "partials/repo-numbered-list.njk" %}
+        <div class="tier-directory-cta">
+          <a class="action-link action-link--tier" href="{{ catalog.tierDescriptions["1"].path }}">
+            {{ catalog.tierDescriptions["1"].ctaLabel }}
+          </a>
+        </div>
+      </div>
+
+      {# ── Tier 2 ─────────────────────────────────────────────────────────── #}
+      <div class="tier-directory-block tier-directory-block--2">
+        <div class="tier-directory-header">
+          <div class="tier-directory-header__meta">
+            <span class="tier-badge tier-badge--2">Tier 2</span>
+            <span class="tier-directory-header__count">{{ catalog.tier2Repos | length }} repos</span>
+          </div>
+          <h3 class="tier-directory-header__title">{{ catalog.tierDescriptions["2"].title }}</h3>
+          <p class="tier-directory-header__description">{{ catalog.tierDescriptions["2"].description }}</p>
+        </div>
+        {% set tierRepos = catalog.tier2Repos %}
+        {% set tierNum = "2" %}
+        {% include "partials/repo-numbered-list.njk" %}
+        <div class="tier-directory-cta">
+          <a class="action-link action-link--tier" href="{{ catalog.tierDescriptions["2"].path }}">
+            {{ catalog.tierDescriptions["2"].ctaLabel }}
+          </a>
+        </div>
+      </div>
+
+      {# ── Tier 3 ─────────────────────────────────────────────────────────── #}
+      <div class="tier-directory-block tier-directory-block--3">
+        <div class="tier-directory-header">
+          <div class="tier-directory-header__meta">
+            <span class="tier-badge tier-badge--3">Tier 3</span>
+            <span class="tier-directory-header__count">{{ catalog.tier3Repos | length }} repos</span>
+          </div>
+          <h3 class="tier-directory-header__title">{{ catalog.tierDescriptions["3"].title }}</h3>
+          <p class="tier-directory-header__description">{{ catalog.tierDescriptions["3"].description }}</p>
+        </div>
+        {% set tierRepos = catalog.tier3Repos %}
+        {% set tierNum = "3" %}
+        {% include "partials/repo-numbered-list.njk" %}
+        <div class="tier-directory-cta">
+          <a class="action-link action-link--tier" href="{{ catalog.tierDescriptions["3"].path }}">
+            {{ catalog.tierDescriptions["3"].ctaLabel }}
+          </a>
+        </div>
+      </div>
+
+    </div>{# /.tier-directory #}
+  </div>
+</section>

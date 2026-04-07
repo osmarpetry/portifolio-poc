@@ -1,0 +1,142 @@
+{#
+  tier-entry-card.njk
+  Renders a single showcase entry card.
+  The layout variant is driven by entry.layout:
+    "editorial"  — large card, full visual, Tier 1
+    "medium"     — standard card with image, Tier 2
+    "archive"    — compact/dense row, Tier 3
+
+  Context:
+    entry — a showcaseEntry object
+#}
+
+{% if entry.layout == "editorial" %}
+
+  <article class="tier-entry-card tier-entry-card--editorial" id="{{ entry.id }}">
+    {# Anchor aliases for grouped entries (e.g. moneylion-demo covers lion-fe + lion-be) #}
+    {% for repo in entry.sourceRepos %}
+      {% if repo != entry.id %}
+        <span id="{{ repo }}" aria-hidden="true"></span>
+      {% endif %}
+    {% endfor %}
+    <div class="tier-entry-card__media">
+      <img
+        src="{{ entry.images[0].src }}"
+        alt="{{ entry.images[0].alt }}"
+        loading="lazy"
+        width="1600"
+        height="1000"
+      />
+    </div>
+    <div class="tier-entry-card__body">
+      <p class="project-type">{{ entry.type }}</p>
+      <h3 class="tier-entry-card__title">{{ entry.title }}</h3>
+      <p class="tier-entry-card__summary">{{ entry.summary }}</p>
+      {% if entry.stack %}
+        <p class="stack-line">
+          <span>Stack</span>{{ entry.stack | join(" · ") }}
+        </p>
+      {% endif %}
+      {% if entry.sourceRepos | length > 1 %}
+        <p class="tier-entry-card__repos">
+          <span>Repos</span>
+          {% for repo in entry.sourceRepos %}
+            <code>{{ repo }}</code>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+      {% if entry.links %}
+        <div class="project-links">
+          {% for link in entry.links %}
+            <a href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.label }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </article>
+
+{% elif entry.layout == "medium" %}
+
+  <article class="tier-entry-card tier-entry-card--medium" id="{{ entry.id }}">
+    {% for repo in entry.sourceRepos %}
+      {% if repo != entry.id %}
+        <span id="{{ repo }}" aria-hidden="true"></span>
+      {% endif %}
+    {% endfor %}
+    <div class="tier-entry-card__media">
+      <img
+        src="{{ entry.images[0].src }}"
+        alt="{{ entry.images[0].alt }}"
+        loading="lazy"
+        width="1200"
+        height="750"
+      />
+    </div>
+    <div class="tier-entry-card__body">
+      <p class="project-type">{{ entry.type }}</p>
+      <h3 class="tier-entry-card__title">{{ entry.title }}</h3>
+      <p class="tier-entry-card__summary">{{ entry.summary }}</p>
+      {% if entry.stack %}
+        <p class="stack-line">
+          <span>Stack</span>{{ entry.stack | join(" · ") }}
+        </p>
+      {% endif %}
+      {% if entry.sourceRepos | length > 1 %}
+        <p class="tier-entry-card__repos">
+          <span>Repos</span>
+          {% for repo in entry.sourceRepos %}
+            <code>{{ repo }}</code>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+      {% if entry.links %}
+        <div class="project-links">
+          {% for link in entry.links %}
+            <a href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.label }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </article>
+
+{% else %}{# archive #}
+
+  <article class="tier-entry-card tier-entry-card--archive" id="{{ entry.id }}">
+    {% for repo in entry.sourceRepos %}
+      {% if repo != entry.id %}
+        <span id="{{ repo }}" aria-hidden="true"></span>
+      {% endif %}
+    {% endfor %}
+    <div class="tier-entry-card__archive-inner">
+      <div class="tier-entry-card__archive-media">
+        <img
+          src="{{ entry.images[0].src }}"
+          alt="{{ entry.images[0].alt }}"
+          loading="lazy"
+          width="400"
+          height="250"
+        />
+      </div>
+      <div class="tier-entry-card__body">
+        <div class="tier-entry-card__archive-header">
+          <h3 class="tier-entry-card__title">{{ entry.title }}</h3>
+          <p class="project-type">{{ entry.type }}</p>
+        </div>
+        <p class="tier-entry-card__summary">{{ entry.summary }}</p>
+        {% if entry.stack %}
+          <p class="stack-line">
+            <span>Stack</span>{{ entry.stack | join(" · ") }}
+          </p>
+        {% endif %}
+        {% if entry.links %}
+          <div class="project-links">
+            {% for link in entry.links %}
+              <a href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.label }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+
+{% endif %}

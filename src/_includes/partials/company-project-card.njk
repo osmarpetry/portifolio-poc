@@ -1,0 +1,22 @@
+<article class="company-project-card">
+  <figure class="company-project-card__media">
+    <img
+      src="{{ companyProject.image.src }}"
+      alt="{{ companyProject.image.alt }}"
+      loading="lazy"
+      width="1200"
+      height="800"
+    />
+  </figure>
+  <div class="company-project-card__body">
+    <h3>{{ companyProject.title }}</h3>
+    <p>{{ companyProject.summary }}</p>
+    {% if companyProject.links %}
+      <div class="project-links">
+        {% for link in companyProject.links %}
+          <a href="{{ link.url }}"{% if link.url != "#" %} target="_blank" rel="noreferrer"{% endif %}>{{ link.label }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

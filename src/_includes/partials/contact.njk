@@ -1,0 +1,58 @@
+<section class="section section-contact" id="contact">
+  <div class="container contact-shell">
+    <div class="contact-panel">
+      <article class="mentorship-card">
+        <div class="mentorship-media" aria-hidden="true">
+          {% for image in contactProject.images %}
+            <figure class="mentorship-media__frame">
+              <img
+                src="{{ image.src }}"
+                alt="{{ image.alt }}"
+                loading="lazy"
+                width="1600"
+                height="1000"
+              />
+            </figure>
+          {% endfor %}
+        </div>
+        <div class="mentorship-body">
+          <p class="project-type">{{ contactProject.type }}</p>
+          <h2>{{ contactProject.title }}</h2>
+          <p class="mentorship-summary">{{ contactProject.summary }}</p>
+          <div class="mentorship-actions">
+            <a
+              class="mentorship-link"
+              href="{{ contactProject.links[0].url }}"
+              target="_blank"
+              rel="noreferrer"
+              >{{ contactProject.links[0].label }}</a
+            >
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="contact-panel contact-panel--company">
+      <div class="section-heading section-heading--tight">
+        <p class="eyebrow">Contact</p>
+        <h2>Get in touch</h2>
+        <p>
+          For companies and product teams, email is the fastest way to reach me.
+          LinkedIn and GitHub are here if you want more context first.
+        </p>
+        <p>
+          Open to full-time roles, consulting engagements, and advisory work. I
+          typically respond within a day.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a class="contact-link" href="{{ site.linkedin }}" target="_blank" rel="noreferrer"
+          >LinkedIn</a
+        >
+        <a class="contact-link" href="{{ site.github }}" target="_blank" rel="noreferrer"
+          >GitHub</a
+        >
+      </div>
+    </div>
+  </div>
+</section>

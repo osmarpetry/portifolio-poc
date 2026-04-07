@@ -1,0 +1,27 @@
+<div class="section-heading">
+  {% if headingEyebrow %}
+    <p class="eyebrow">{{ headingEyebrow }}</p>
+  {% endif %}
+
+  {% if headingLevel == "h1" %}
+    <h1{% if headingId %} id="{{ headingId }}"{% endif %}>
+      {% if headingHref %}
+        <a class="section-title-link" href="{{ headingHref }}">{{ headingTitle }}</a>
+      {% else %}
+        {{ headingTitle }}
+      {% endif %}
+    </h1>
+  {% else %}
+    <h2{% if headingId %} id="{{ headingId }}"{% endif %}>
+      {% if headingHref %}
+        <a class="section-title-link" href="{{ headingHref }}">{{ headingTitle }}</a>
+      {% else %}
+        {{ headingTitle }}
+      {% endif %}
+    </h2>
+  {% endif %}
+
+  {% if headingDescription %}
+    <p>{{ headingDescription }}</p>
+  {% endif %}
+</div>

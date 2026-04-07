@@ -1,0 +1,51 @@
+{% set tabsMode = tierTabsMode or "routes" %}
+{% if tabsMode == "query" %}
+  {% set allHref = "/projects" %}
+  {% set tier1Href = "/projects/#tier-1" %}
+  {% set tier2Href = "/projects/#tier-2" %}
+  {% set tier3Href = "/projects/#tier-3" %}
+{% else %}
+  {% set tier1Href = "/projects/tier-1/" %}
+  {% set tier2Href = "/projects/tier-2/" %}
+  {% set tier3Href = "/projects/tier-3/" %}
+{% endif %}
+<nav class="tier-tabs" aria-label="Browse tiers">
+  {% if tierTabsIncludeAll %}
+    <a
+      class="tier-tab{% if activeTier == "all" %} tier-tab--active{% endif %}"
+      href="{{ allHref }}"
+      data-tier-tab="all"
+      {% if activeTier == "all" %}aria-current="page"{% endif %}
+    >
+      <span class="tier-tab__label">All</span>
+      <span class="tier-tab__meta">{{ catalog.allReposCount }} repos</span>
+    </a>
+  {% endif %}
+  <a
+    class="tier-tab{% if activeTier == "1" %} tier-tab--active{% endif %}"
+    href="{{ tier1Href }}"
+    data-tier-tab="1"
+    {% if activeTier == "1" %}aria-current="page"{% endif %}
+  >
+    <span class="tier-tab__label">Tier 1</span>
+    <span class="tier-tab__meta">{{ catalog.tier1Repos | length }} repos</span>
+  </a>
+  <a
+    class="tier-tab{% if activeTier == "2" %} tier-tab--active{% endif %}"
+    href="{{ tier2Href }}"
+    data-tier-tab="2"
+    {% if activeTier == "2" %}aria-current="page"{% endif %}
+  >
+    <span class="tier-tab__label">Tier 2</span>
+    <span class="tier-tab__meta">{{ catalog.tier2Repos | length }} repos</span>
+  </a>
+  <a
+    class="tier-tab{% if activeTier == "3" %} tier-tab--active{% endif %}"
+    href="{{ tier3Href }}"
+    data-tier-tab="3"
+    {% if activeTier == "3" %}aria-current="page"{% endif %}
+  >
+    <span class="tier-tab__label">Tier 3</span>
+    <span class="tier-tab__meta">{{ catalog.tier3Repos | length }} repos</span>
+  </a>
+</nav>

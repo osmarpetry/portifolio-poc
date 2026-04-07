@@ -1,0 +1,13 @@
+<section class="section section-work" id="selected-work">
+  <div class="container">
+    {% set sectionId = "tier-1-projects" %}
+    {% set sectionEyebrow = "Projects page" %}
+    {% set sectionTitle = catalog.tierDescriptions["1"].title %}
+    {% set sectionTitleHref = "/#selected-work" %}
+    {% set sectionDescription = catalog.tierDescriptions["1"].description %}
+    {% set sectionProjects = catalog.homeTier1PreviewEntries %}
+    {% set sectionCtaUrl = "/projects/" %}
+    {% set sectionCtaLabel = "See all projects" %}
+    {% include "partials/project-tier-section.njk" %}
+  </div>
+</section>

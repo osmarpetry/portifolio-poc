@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+canonicalPath: /projects/
+pageTitle: "Projects — Osmar Petry"
+activeTier: "all"
+tierTabsMode: "query"
+tierTabsIncludeAll: true
+---
+<section class="section section-tier-page" data-projects-page aria-label="Projects">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Projects</p>
+      <h1 id="projects-index-heading">Projects.</h1>
+      <p>
+        Selected work organized in three reading tiers — lead projects first, supporting range next,
+        and archive work kept visible without mixing it into the main read.
+      </p>
+    </div>
+
+    {% set sectionId = "tier-1" %}
+    {% set sectionEyebrow = catalog.tierDescriptions["1"].label %}
+    {% set sectionTitle = catalog.tierDescriptions["1"].title %}
+    {% set sectionTitleHref = "#tier-1" %}
+    {% set sectionDescription = catalog.tierDescriptions["1"].description %}
+    {% set sectionProjects = catalog.tier1Entries %}
+    {% set sectionClass = "tier-panel" %}
+    {% set sectionDataTier = "1" %}
+    {% set sectionHidden = false %}
+    {% set sectionCtaUrl = "" %}
+    {% set sectionCtaLabel = "" %}
+    {% include "partials/project-tier-section.njk" %}
+
+    {% set sectionId = "tier-2" %}
+    {% set sectionEyebrow = catalog.tierDescriptions["2"].label %}
+    {% set sectionTitle = catalog.tierDescriptions["2"].title %}
+    {% set sectionTitleHref = "#tier-2" %}
+    {% set sectionDescription = catalog.tierDescriptions["2"].description %}
+    {% set sectionProjects = catalog.tier2Entries %}
+    {% set sectionClass = "tier-panel" %}
+    {% set sectionDataTier = "2" %}
+    {% set sectionHidden = false %}
+    {% set sectionCtaUrl = "" %}
+    {% set sectionCtaLabel = "" %}
+    {% include "partials/project-tier-section.njk" %}
+
+    {% set sectionId = "tier-3" %}
+    {% set sectionEyebrow = catalog.tierDescriptions["3"].label %}
+    {% set sectionTitle = catalog.tierDescriptions["3"].title %}
+    {% set sectionTitleHref = "#tier-3" %}
+    {% set sectionDescription = catalog.tierDescriptions["3"].description %}
+    {% set sectionProjects = catalog.tier3Entries %}
+    {% set sectionClass = "tier-panel" %}
+    {% set sectionDataTier = "3" %}
+    {% set sectionHidden = false %}
+    {% set sectionCtaUrl = "" %}
+    {% set sectionCtaLabel = "" %}
+    {% include "partials/project-tier-section.njk" %}
+  </div>
+</section>

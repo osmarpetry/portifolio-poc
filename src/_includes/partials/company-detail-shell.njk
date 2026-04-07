@@ -1,0 +1,80 @@
+{#
+  company-detail-shell.njk
+  Layout shell for /companies/{slug}/ pages.
+  Fixed intro panel + stacked project sections.
+  No horizontal carousel. Stable height regardless of project count.
+
+  Context:
+    company — a single company object from companies.js
+#}
+<div class="company-detail" aria-labelledby="company-detail-name">
+
+  {# ── Intro panel ─────────────────────────────────────────────────────── #}
+  <div class="company-detail__intro">
+    <div class="company-detail__brand">
+      {% if company.brand.kind == "logo" and company.brand.src %}
+        <img
+          class="company-detail__logo"
+          src="{{ company.brand.src }}"
+          alt="{{ company.brand.alt }}"
+          width="160"
+          height="48"
+        />
+      {% else %}
+        <span class="company-detail__wordmark">{{ company.brand.text or company.name }}</span>
+      {% endif %}
+    </div>
+
+    <div class="company-detail__copy">
+      <p class="project-type">{{ company.role }}</p>
+      <h1 class="company-detail__name" id="company-detail-name">{{ company.name }}</h1>
+      <p class="company-detail__period">{{ company.period }}</p>
+      <p class="company-detail__summary">{{ company.summary }}</p>
+      {% if company.companyUrl %}
+        <div class="project-links">
+          <a href="{{ company.companyUrl }}" target="_blank" rel="noreferrer">Company site</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <nav class="company-detail__nav" aria-label="Company navigation">
+      <a class="action-link action-link--secondary" href="/companies/">← All companies</a>
+    </nav>
+  </div>
+
+  {# ── Projects ──────────────────────────────────────────────────────────── #}
+  <div class="company-detail__projects">
+    {% if company.projects | length %}
+      {% for project in company.projects %}
+        <article class="company-detail-card" id="{{ project.slug }}">
+          <div class="company-detail-card__media">
+            <img
+              src="{{ project.image.src }}"
+              alt="{{ project.image.alt }}"
+              loading="lazy"
+              width="1200"
+              height="800"
+            />
+          </div>
+          <div class="company-detail-card__body">
+            <h2 class="company-detail-card__title">{{ project.title }}</h2>
+            <p class="company-detail-card__summary">{{ project.summary }}</p>
+            {% if project.links %}
+              <div class="project-links">
+                {% for link in project.links %}
+                  <a
+                    href="{{ link.url }}"
+                    {% if link.url != "#" %}target="_blank" rel="noreferrer"{% endif %}
+                  >{{ link.label }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p class="company-detail__empty">Project details for {{ company.name }} are being curated.</p>
+    {% endif %}
+  </div>
+
+</div>{# /.company-detail #}

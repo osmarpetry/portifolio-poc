@@ -1,0 +1,28 @@
+<ol class="company-index-list" aria-label="Company index">
+  {% for company in companies %}
+    <li class="company-index-item" id="company-{{ company.slug }}">
+      <span class="company-index-item__number" aria-hidden="true">{{ loop.index }}</span>
+      <div class="company-index-item__body">
+        <div class="company-index-item__header">
+          <h2 class="company-index-item__name">{{ company.name }}</h2>
+          <span class="company-index-item__count">
+            {{ company.projects | length }} project{% if company.projects | length != 1 %}s{% endif %}
+          </span>
+        </div>
+        <p class="company-index-item__meta">
+          <span class="company-index-item__role">{{ company.role }}</span>
+          <span class="company-index-item__sep" aria-hidden="true">·</span>
+          <span class="company-index-item__period">{{ company.period }}</span>
+        </p>
+        <p class="company-index-item__summary">{{ company.summary }}</p>
+        <div class="company-index-item__projects project-grid">
+          {% for project in company.projects %}
+            <div class="project-card-frame">
+              {% include "partials/project-card.njk" %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </li>
+  {% endfor %}
+</ol>

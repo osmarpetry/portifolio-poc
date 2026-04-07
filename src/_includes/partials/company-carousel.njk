@@ -1,0 +1,77 @@
+<section class="section section-company-carousel" id="company-work">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Company Work</p>
+      <h2>Companies, products, and internal tools shipped across different stages.</h2>
+      <p>
+        One company per slide, with the projects kept inside each company array
+        so the order can change from data only.
+      </p>
+    </div>
+  </div>
+
+  <div class="company-carousel-shell" data-company-carousel>
+    <div class="company-carousel-toolbar container">
+      <p class="company-carousel-toolbar__label">Company timeline</p>
+      <div class="company-carousel-toolbar__actions">
+        <button
+          class="company-carousel-button"
+          type="button"
+          data-company-carousel-prev
+          aria-label="Previous company"
+        >
+          Prev
+        </button>
+        <button
+          class="company-carousel-button"
+          type="button"
+          data-company-carousel-next
+          aria-label="Next company"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+
+    <div class="company-carousel-viewport">
+      <div class="company-carousel-track" data-company-carousel-track>
+        {% for company in companyExperience %}
+          <article class="company-slide" id="company-{{ company.slug }}">
+            <div class="company-slide__intro">
+              <div class="company-slide__brand">
+                {% if company.brand.kind == "logo" and company.brand.src %}
+                  <img
+                    src="{{ company.brand.src }}"
+                    alt="{{ company.brand.alt }}"
+                    loading="lazy"
+                    width="320"
+                    height="160"
+                  />
+                {% else %}
+                  <span class="company-wordmark">{{ company.brand.text or company.name }}</span>
+                {% endif %}
+              </div>
+              <div class="company-slide__copy">
+                <p class="project-type">{{ company.role }}</p>
+                <h3>{{ company.name }}</h3>
+                <p class="company-slide__period">{{ company.period }}</p>
+                <p class="company-slide__summary">{{ company.summary }}</p>
+                {% if company.companyUrl %}
+                  <div class="project-links">
+                    <a href="{{ company.companyUrl }}" target="_blank" rel="noreferrer">Company link</a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="company-project-grid">
+              {% for companyProject in company.projects %}
+                {% include "partials/company-project-card.njk" %}
+              {% endfor %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

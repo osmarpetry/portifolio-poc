@@ -1,0 +1,38 @@
+<section
+  class="tier-section{% if sectionClass %} {{ sectionClass }}{% endif %}"
+  id="{{ sectionId }}"
+  {% if sectionDataTier %}data-tier-panel="{{ sectionDataTier }}"{% endif %}
+  {% if sectionHidden %}hidden{% endif %}
+>
+  <div class="section-heading">
+    {% if sectionTitleHref %}
+      <a class="section-heading-link" href="{{ sectionTitleHref }}">
+        <p class="eyebrow">{{ sectionEyebrow }}</p>
+        <h2>{{ sectionTitle }}</h2>
+        <p>{{ sectionDescription }}</p>
+      </a>
+    {% else %}
+      <p class="eyebrow">{{ sectionEyebrow }}</p>
+      <h2>{{ sectionTitle }}</h2>
+      <p>{{ sectionDescription }}</p>
+    {% endif %}
+  </div>
+  <div class="project-grid">
+    {% for project in sectionProjects %}
+      {% set projectAliases = project.sourceRepos or [] %}
+      <div
+        class="project-card-frame"
+        id="{{ project.slug }}"
+        data-project-card="{{ project.slug }}"
+        {% if projectAliases | length %}data-project-aliases="{{ projectAliases | join(",") }}"{% endif %}
+      >
+        {% include "partials/project-card.njk" %}
+      </div>
+    {% endfor %}
+  </div>
+  {% if sectionCtaUrl and sectionCtaLabel %}
+    <div class="tier-section__cta">
+      <a class="action-link action-link--tier" href="{{ sectionCtaUrl }}">{{ sectionCtaLabel }}</a>
+    </div>
+  {% endif %}
+</section>

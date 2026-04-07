@@ -8,6 +8,7 @@
     "build:prod": "rm -rf _site && NODE_ENV=production eleventy && node scripts/optimize.mjs",
     "optimize": "node scripts/optimize.mjs",
     "screenshots:capture": "node scripts/capture-screenshots.mjs",
+    "covers:fill": "node scripts/fill-missing-covers.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

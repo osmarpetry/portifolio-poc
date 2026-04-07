@@ -1,0 +1,15 @@
+<section class="section section-strengths" id="what-i-bring">
+  <div class="container">
+    {% set headingEyebrow = "What I bring" %}
+    {% set headingTitle = "Engineering strengths that show up in the work." %}
+    {% set headingDescription = "The value is not only in building interfaces. It is in making the surrounding technical decisions without flattening the product." %}
+    {% set headingLevel = "h2" %}
+    {% include "components/molecules/section-heading.njk" %}
+
+    <div class="strength-grid">
+      {% for strength in strengths %}
+        {% include "components/molecules/strength-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
