@@ -136,7 +136,7 @@ module.exports = [
       {
         label: "Live",
         url: "https://leafy-kashata-0beda8.netlify.app/",
-      }
+      },
     ],
     status: "active",
     visualMode: "placeholder",
@@ -284,7 +284,7 @@ module.exports = [
   {
     repo: "backend-appsync",
     title: "Backend AppSync",
-    tier: 2,
+    tier: 3,
     entryId: "backend-appsync",
     summary:
       "AWS AppSync-based backend with GraphQL API, demonstrating cloud-native data layer architecture.",
@@ -344,7 +344,7 @@ module.exports = [
   {
     repo: "quizzler-flutter",
     title: "Quizzler Flutter",
-    tier: 2,
+    tier: 3,
     entryId: "quizzler-flutter",
     summary:
       "Flutter quiz application exploring cross-platform mobile development with Dart and Flutter UI patterns.",
@@ -399,23 +399,6 @@ module.exports = [
     visualMode: "placeholder",
   },
   {
-    repo: "corebase-codeassment",
-    title: "Corebase Assessment",
-    tier: 3,
-    entryId: "corebase-codeassment",
-    summary:
-      "Technical assessment project for Corebase, demonstrating frontend engineering approach.",
-    stack: ["React", "TypeScript"],
-    links: [
-      {
-        label: "GitHub",
-        url: "https://github.com/osmarpetry/corebase-codeassment",
-      },
-    ],
-    status: "archive",
-    visualMode: "placeholder",
-  },
-  {
     repo: "CustomMuiDrawer",
     title: "Custom MUI Drawer",
     tier: 3,
@@ -451,19 +434,10 @@ module.exports = [
     summary:
       "Photography portfolio or image gallery project exploring media-heavy UI patterns.",
     stack: ["React"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/fotograf" }],
-    status: "archive",
-    visualMode: "placeholder",
-  },
-  {
-    repo: "hello-go",
-    title: "Hello Go",
-    tier: 3,
-    entryId: "hello-go",
-    summary:
-      "Go language learning project exploring idiomatic patterns, tooling, and standard library.",
-    stack: ["Go"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/hello-go" }],
+    links: [
+      { label: "GitHub", url: "https://github.com/osmarpetry/fotograf" },
+      { label: "Live", url: "https://fotograf-poc.netlify.app/services" },
+    ],
     status: "archive",
     visualMode: "placeholder",
   },
@@ -496,18 +470,6 @@ module.exports = [
         url: "https://github.com/osmarpetry/nvim-configuration",
       },
     ],
-    status: "active",
-    visualMode: "placeholder",
-  },
-  {
-    repo: "obisdian",
-    title: "Obsidian Setup",
-    tier: 3,
-    entryId: "obisdian",
-    summary:
-      "Personal Obsidian notes and configuration, including themes, plugins, and organizational templates.",
-    stack: ["Markdown", "Obsidian"],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/obisdian" }],
     status: "active",
     visualMode: "placeholder",
   },

@@ -386,7 +386,7 @@ const showcaseEntries = [
   {
     id: "backend-appsync",
     slug: "backend-appsync",
-    tier: 2,
+    tier: 3,
     title: "Backend AppSync",
     type: "Cloud backend",
     summary:
@@ -474,7 +474,7 @@ const showcaseEntries = [
   {
     id: "quizzler-flutter",
     slug: "quizzler-flutter",
-    tier: 2,
+    tier: 3,
     title: "Quizzler Flutter",
     type: "Mobile application",
     summary:
@@ -498,30 +498,6 @@ const showcaseEntries = [
 
   // ─── Tier 3 — archive layout ────────────────────────────────────────────────
   {
-    id: "axios-server-herror-handler-component",
-    slug: "axios-server-herror-handler-component",
-    tier: 3,
-    title: "Axios Error Handler",
-    type: "React component",
-    summary:
-      "React component for handling Axios server HTTP errors with a clean error boundary pattern.",
-    sourceRepos: ["axios-server-herror-handler-component"],
-    images: [
-      {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder.",
-      },
-    ],
-    links: [
-      {
-        label: "GitHub",
-        url: "https://github.com/osmarpetry/axios-server-herror-handler-component",
-      },
-    ],
-    layout: "archive",
-    stack: ["React", "Axios"],
-  },
-  {
     id: "bootstrap-resposive-site",
     slug: "bootstrap-resposive-site",
     tier: 3,
@@ -538,40 +514,16 @@ const showcaseEntries = [
     ],
     links: [
       {
-        label: "GitHub",
-        url: "https://github.com/osmarpetry/bootstrap-resposive-site",
-      },
-      {
         label: "Live",
         url: "https://incandescent-puppy-fff2fc.netlify.app/",
+      },
+      {
+        label: "GitHub",
+        url: "https://github.com/osmarpetry/bootstrap-resposive-site",
       },
     ],
     layout: "archive",
     stack: ["HTML", "CSS", "Bootstrap"],
-  },
-  {
-    id: "corebase-codeassment",
-    slug: "corebase-codeassment",
-    tier: 3,
-    title: "Corebase Assessment",
-    type: "Technical assessment",
-    summary:
-      "Technical assessment project for Corebase, demonstrating frontend engineering approach.",
-    sourceRepos: ["corebase-codeassment"],
-    images: [
-      {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder.",
-      },
-    ],
-    links: [
-      {
-        label: "GitHub",
-        url: "https://github.com/osmarpetry/corebase-codeassment",
-      },
-    ],
-    layout: "archive",
-    stack: ["React", "TypeScript"],
   },
   {
     id: "CustomMuiDrawer",
@@ -630,28 +582,12 @@ const showcaseEntries = [
         alt: "Placeholder.",
       },
     ],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/fotograf" }],
+    links: [
+      { label: "GitHub", url: "https://github.com/osmarpetry/fotograf" },
+      { label: "Live", url: "https://fotograf-poc.netlify.app/services" },
+    ],
     layout: "archive",
     stack: ["React"],
-  },
-  {
-    id: "hello-go",
-    slug: "hello-go",
-    tier: 3,
-    title: "Hello Go",
-    type: "Language learning",
-    summary:
-      "Go language learning project exploring idiomatic patterns, tooling, and standard library.",
-    sourceRepos: ["hello-go"],
-    images: [
-      {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder.",
-      },
-    ],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/hello-go" }],
-    layout: "archive",
-    stack: ["Go"],
   },
   {
     id: "lumdb-nextjs",
@@ -697,25 +633,6 @@ const showcaseEntries = [
     ],
     layout: "archive",
     stack: ["Lua", "Neovim"],
-  },
-  {
-    id: "obisdian",
-    slug: "obisdian",
-    tier: 3,
-    title: "Obsidian Setup",
-    type: "Dev environment",
-    summary:
-      "Personal Obsidian notes and configuration, including themes, plugins, and organizational templates.",
-    sourceRepos: ["obisdian"],
-    images: [
-      {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder.",
-      },
-    ],
-    links: [{ label: "GitHub", url: "https://github.com/osmarpetry/obisdian" }],
-    layout: "archive",
-    stack: ["Markdown", "Obsidian"],
   },
   {
     id: "osmarpetry-me",
