@@ -89,11 +89,11 @@ module.exports = [
     type: "Design tooling",
     summary:
       "Utility script for turning design-token exports into CSS-friendly outputs, useful as a tooling bridge between design and code.",
-    stack: ["Node.js", "Design Tokens", "Figma"],
+    stack: ["Node.js", "CLI", "Design Tokens", "Figma"],
     images: [
       {
-        src: "/assets/images/screenshots/shared/project-placeholder.svg",
-        alt: "Placeholder cover for Tokens Figma Node project.",
+        src: "/assets/images/screenshots/projects/tokens-figma-node/cover.png",
+        alt: "Cover image for Tokens Figma Node.",
       },
     ],
     links: [

@@ -1,57 +1,113 @@
-/**
- * catalog.js — derived lookups built from repoInventory, showcaseEntries, and companies.
- *
- * Exposed as `catalog` in Nunjucks templates.
- *
- * Properties:
- *   reposByTier       — { "1": [...], "2": [...], "3": [...] }
- *   tier1Repos        — flat array of Tier 1 repos
- *   tier2Repos        — flat array of Tier 2 repos
- *   tier3Repos        — flat array of Tier 3 repos
- *   entriesByTier     — { "1": [...], "2": [...], "3": [...] }
- *   tier1Entries      — flat array of Tier 1 showcase entries
- *   tier2Entries      — flat array of Tier 2 showcase entries
- *   tier3Entries      — flat array of Tier 3 showcase entries
- *   repoToEntry       — { repoSlug: entryId } lookup map
- *   companiesBySlug   — { slug: company } lookup map
- *   tierDescriptions  — human-readable tier labels and descriptions
- */
-
-const repoInventory = require("./repoInventory");
-const showcaseEntries = require("./showcaseEntries");
+const projects = require("./projects");
 const companies = require("./companies");
+const { getProjectRealImagePublicPath } = require("./helpers/media");
 
-// ─── Repos by tier ─────────────────────────────────────────────────────────
-const reposByTier = { "1": [], "2": [], "3": [] };
-for (const repo of repoInventory) {
-  const key = String(repo.tier);
-  if (reposByTier[key]) {
-    reposByTier[key].push(repo);
+function assertProjectIntegrity(projectsList) {
+  const seenSlugs = new Set();
+  const seenRepos = new Map();
+
+  for (const project of projectsList) {
+    if (!project.slug || typeof project.slug !== "string") {
+      throw new Error("Every project requires a non-empty slug.");
+    }
+
+    if (seenSlugs.has(project.slug)) {
+      throw new Error(`Duplicate project slug found: ${project.slug}`);
+    }
+    seenSlugs.add(project.slug);
+
+    if (![1, 2, 3].includes(project.tier)) {
+      throw new Error(`Invalid tier for ${project.slug}: ${project.tier}`);
+    }
+
+    if (!project.title || typeof project.title !== "string") {
+      throw new Error(`Project ${project.slug} requires a non-empty title.`);
+    }
+
+    if (!project.summary || typeof project.summary !== "string") {
+      throw new Error(`Project ${project.slug} requires a non-empty summary.`);
+    }
+
+    if (!Array.isArray(project.repos) || !project.repos.length) {
+      throw new Error(`Project ${project.slug} requires at least one repo.`);
+    }
+
+    if (!Array.isArray(project.links) || !project.links.length) {
+      throw new Error(`Project ${project.slug} requires at least one link.`);
+    }
+
+    const hasGithub = project.links.some(
+      (link) => link?.url && /github\.com/i.test(link.url)
+    );
+
+    if (!hasGithub) {
+      throw new Error(`Project ${project.slug} requires at least one GitHub link.`);
+    }
+
+    for (const repo of project.repos) {
+      if (seenRepos.has(repo)) {
+        throw new Error(
+          `Repo ${repo} is assigned to more than one project: ${seenRepos.get(repo)} and ${project.slug}`
+        );
+      }
+
+      seenRepos.set(repo, project.slug);
+    }
   }
 }
 
-// ─── Showcase entries by tier ───────────────────────────────────────────────
-const entriesByTier = { "1": [], "2": [], "3": [] };
-for (const entry of showcaseEntries) {
-  const key = String(entry.tier);
-  if (entriesByTier[key]) {
-    entriesByTier[key].push(entry);
+function deriveProject(project) {
+  const imagePath = getProjectRealImagePublicPath(project.slug);
+  const githubLinks = project.links.filter((link) => /github\.com/i.test(link.url));
+  const liveLinks = project.links.filter((link) => !/github\.com/i.test(link.url));
+
+  return {
+    ...project,
+    type: `Tier ${project.tier}`,
+    images: imagePath
+      ? [
+          {
+            src: imagePath,
+            alt: `Cover image for ${project.title}.`,
+          },
+        ]
+      : [],
+    hasImage: Boolean(imagePath),
+    githubLinks,
+    liveLinks,
+  };
+}
+
+assertProjectIntegrity(projects);
+
+const derivedProjects = projects.map(deriveProject);
+
+const projectsByTier = { "1": [], "2": [], "3": [] };
+const projectsWithImagesByTier = { "1": [], "2": [], "3": [] };
+const projectsWithoutImagesByTier = { "1": [], "2": [], "3": [] };
+const projectByRepoSlug = {};
+
+for (const project of derivedProjects) {
+  const key = String(project.tier);
+
+  projectsByTier[key].push(project);
+
+  if (project.hasImage) {
+    projectsWithImagesByTier[key].push(project);
+  } else {
+    projectsWithoutImagesByTier[key].push(project);
+  }
+
+  for (const repo of project.repos) {
+    projectByRepoSlug[repo] = project;
   }
 }
 
-// ─── Repo → entry lookup ────────────────────────────────────────────────────
-const repoToEntry = {};
-for (const repo of repoInventory) {
-  repoToEntry[repo.repo] = repo.entryId;
-}
-
-// ─── Companies by slug ───────────────────────────────────────────────────────
 const companiesBySlug = {};
 for (const company of companies) {
   companiesBySlug[company.slug] = company;
 }
 
-// ─── Tier metadata ───────────────────────────────────────────────────────────
 const tierDescriptions = {
   "1": {
     label: "Tier 1",
@@ -88,7 +144,7 @@ const tierDescriptions = {
   },
 };
 
-const homeTier1PreviewEntries = entriesByTier["1"].slice(0, 4);
+const homeTier1PreviewProjects = projectsWithImagesByTier["1"].slice(0, 4);
 
 const homeCompanyHighlightOrder = ["attend", "consulting", "x-team", "luizalabs"];
 
@@ -116,18 +172,16 @@ const homeCompanyProjects = homeCompanyHighlightOrder
   .filter(Boolean);
 
 module.exports = {
-  reposByTier,
-  tier1Repos: reposByTier["1"],
-  tier2Repos: reposByTier["2"],
-  tier3Repos: reposByTier["3"],
-  allReposCount: reposByTier["1"].length + reposByTier["2"].length + reposByTier["3"].length,
-  entriesByTier,
-  tier1Entries: entriesByTier["1"],
-  tier2Entries: entriesByTier["2"],
-  tier3Entries: entriesByTier["3"],
-  homeTier1PreviewEntries,
-  repoToEntry,
+  allReposCount: derivedProjects.reduce((total, project) => total + project.repos.length, 0),
   companiesBySlug,
   homeCompanyProjects,
+  homeTier1PreviewProjects,
+  projectByRepoSlug,
+  projectsByTier,
+  projectsWithImagesByTier,
+  projectsWithoutImagesByTier,
+  tier1Projects: projectsByTier["1"],
+  tier2Projects: projectsByTier["2"],
+  tier3Projects: projectsByTier["3"],
   tierDescriptions,
 };

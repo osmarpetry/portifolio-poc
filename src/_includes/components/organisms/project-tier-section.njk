@@ -17,19 +17,26 @@
       <p>{{ sectionDescription }}</p>
     {% endif %}
   </div>
-  <div class="project-grid">
-    {% for project in sectionProjects %}
-      {% set projectAliases = project.sourceRepos or [] %}
-      <div
-        class="project-card-frame"
-        id="{{ project.slug }}"
-        data-project-card="{{ project.slug }}"
-        {% if projectAliases | length %}data-project-aliases="{{ projectAliases | join(",") }}"{% endif %}
-      >
-        {% include "partials/project-card.njk" %}
-      </div>
-    {% endfor %}
-  </div>
+  {% if sectionProjects and sectionProjects.length %}
+    <div class="project-grid">
+      {% for project in sectionProjects %}
+        {% set projectAliases = project.repos or [] %}
+        <div
+          class="project-card-frame"
+          id="{{ project.slug }}"
+          data-project-card="{{ project.slug }}"
+          {% if projectAliases | length %}data-project-aliases="{{ projectAliases | join(",") }}"{% endif %}
+        >
+          {% include "partials/project-card.njk" %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% set teaserProjects = sectionListProjects %}
+  {% set teaserTitle = sectionListTitle %}
+  {% set teaserEyebrow = sectionListEyebrow %}
+  {% set teaserDescription = sectionListDescription %}
+  {% include "components/organisms/project-teaser-list-section.njk" %}
   {% if sectionCtaUrl and sectionCtaLabel %}
     <div class="tier-section__cta">
       <a class="action-link action-link--tier" href="{{ sectionCtaUrl }}">{{ sectionCtaLabel }}</a>

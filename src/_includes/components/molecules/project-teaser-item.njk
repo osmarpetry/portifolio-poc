@@ -1,0 +1,26 @@
+<li
+  class="company-teaser-item project-teaser-item"
+  id="{{ project.slug }}"
+  data-project-card="{{ project.slug }}"
+  {% if project.repos and project.repos.length %}data-project-aliases="{{ project.repos | join(",") }}"{% endif %}
+>
+  {% set primaryGithubLink = (project.githubLinks and project.githubLinks[0]) or (project.links and project.links[0]) %}
+  <a
+    class="company-teaser-item__link project-teaser-item__link"
+    href="{{ primaryGithubLink.url }}"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <span class="company-teaser-item__name project-teaser-item__name">
+      {{ project.repos | join(" + ") }}
+    </span>
+    <span class="company-teaser-item__meta project-teaser-item__meta">
+      <span class="company-teaser-item__role project-teaser-item__summary">
+        {{ project.summary }}
+      </span>
+      {% for stackItem in project.stack or [] %}
+        <span class="company-teaser-item__count project-teaser-item__chip">{{ stackItem }}</span>
+      {% endfor %}
+    </span>
+  </a>
+</li>

@@ -21,7 +21,7 @@ export const Default = {
       strengths,
     });
     const projectCard = renderTemplate("components/molecules/project-card.njk", {
-      project: catalog.tier1Entries[0],
+      project: catalog.tier1Projects[0],
     });
 
     return `

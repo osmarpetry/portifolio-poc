@@ -1,4 +1,9 @@
-module.exports = [
+const {
+  getCompanyProjectScreenshotPublicPath,
+  resolveImage,
+} = require("./helpers/media");
+
+const companyExperience = [
   {
     slug: "cyber",
     name: "Cyber",
@@ -204,7 +209,7 @@ module.exports = [
           "Placeholder card for Zup projects until the internal product names and screenshots are finalized.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
-          alt: "Placeholder image for Zup work.",
+          alt: "Abstract portfolio-safe cover artwork for Zup client work.",
         },
         links: [{ label: "Zup", url: "https://www.zup.com.br" }],
       },
@@ -308,7 +313,7 @@ module.exports = [
           "Placeholder card for Envolve Labs work, ready to be replaced with exact project information.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
-          alt: "Placeholder image for Envolve Labs work.",
+          alt: "Abstract portfolio-safe cover artwork for Envolve Labs client work.",
         },
         links: [{ label: "Details pending", url: "#" }],
       },
@@ -341,3 +346,20 @@ module.exports = [
     ],
   },
 ];
+
+module.exports = companyExperience.map((company) => ({
+  ...company,
+  projects: company.projects.map((project) => ({
+    ...project,
+    image: project.image
+      ? resolveImage({
+          preferredPublicPath: getCompanyProjectScreenshotPublicPath(
+            company.slug,
+            project.slug,
+          ),
+          fallbackImage: project.image,
+          alt: project.image.alt || `Cover image for ${project.title}.`,
+        })
+      : project.image,
+  })),
+}));

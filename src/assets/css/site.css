@@ -1680,6 +1680,59 @@ li {
   justify-content: flex-start;
 }
 
+.project-teaser-shell {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.project-teaser-list {
+  margin-bottom: 0;
+}
+
+.project-teaser-item {
+  padding: 0;
+}
+
+.project-teaser-item__link {
+  align-items: center;
+}
+
+.project-teaser-item__name {
+  text-transform: none;
+}
+
+.project-teaser-item__meta {
+  gap: 0.45rem;
+}
+
+.project-teaser-item__summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 42rem;
+}
+
+.project-teaser-item__chip {
+  flex-shrink: 0;
+}
+
+.project-card-frame--focus.project-teaser-item {
+  scroll-margin-top: 6rem;
+  border-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .project-teaser-item__link {
+    align-items: flex-start;
+  }
+
+  .project-teaser-item__meta {
+    justify-content: flex-start;
+  }
+}
+
 /* ============================================================
    COMPANY INDEX PAGE
    ============================================================ */

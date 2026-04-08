@@ -148,14 +148,13 @@ export const contactProject = {
 };
 
 const projectCardProject = {
-  id: "chargebee-brevo-demo",
   slug: "chargebee-brevo-demo",
   tier: 1,
   title: "ChargeBee + Brevo Demo",
-  type: "Integration workflow",
+  type: "Tier 1",
   summary:
     "Webhook-driven billing and CRM flow with clear checkout handling and test coverage around the handoff.",
-  sourceRepos: ["chargebee-brevo-demo"],
+  repos: ["chargebee-brevo-demo"],
   images: [
     {
       src: "/assets/images/projects/chargebee-brevo-demo/cover.jpg",
@@ -172,12 +171,11 @@ const projectCardProject = {
       url: "https://github.com/osmarpetry/chargebee-brevo-demo",
     },
   ],
-  layout: "editorial",
   stack: ["Next.js 15", "TypeScript", "Vitest", "Playwright"],
 };
 
 export const catalog = {
-  tier1Entries: [projectCardProject],
-  tier2Entries: [],
-  tier3Entries: [],
+  tier1Projects: [projectCardProject],
+  tier2Projects: [],
+  tier3Projects: [],
 };

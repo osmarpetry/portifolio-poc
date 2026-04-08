@@ -32,18 +32,18 @@ const companies = [
   {
     slug: "cyber",
     name: "Cyberr",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Senior Software Engineer",
+    period: "Oct 2025–Present",
     summary:
-      "Earlier product and frontend work represented here with the public Cyberr surface as the visible reference point.",
+      "Cybersecurity hiring platform focused on matching companies with verified security talent through recruiting, scheduling, and identity-aware product flows.",
     companyUrl: "https://cyberr.ai/",
     brand: { kind: "wordmark", text: "Cyberr" },
     projects: [
       {
         slug: "cyberr-ai-platform",
-        title: "Cyberr AI platform",
+        title: "Cyberr hiring and scheduling platform",
         summary:
-          "Public-facing Cyberr site used as the current visual reference for the earlier frontend and product work done there.",
+          "Frontend-focused full-stack delivery across calendar scheduling, dashboard widgets, Microsoft Graph and Daily.co integrations, and Veriff-based identity verification for the Cyberr platform.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Cyberr AI platform work.",
@@ -56,17 +56,17 @@ const companies = [
     slug: "attend",
     name: "Attend",
     role: "Senior Software Engineer",
-    period: "May 2023–Present",
+    period: "May 2023–Oct 2025",
     summary:
-      "Administration, payments, and event-product work spanning inventory, assignments, gift cards, and data synchronization.",
+      "Ticketing and live-event commerce platform spanning passes, memberships, gift cards, and flexible fan experiences for sports and entertainment organizations.",
     companyUrl: "https://www.attend.tech",
     brand: { kind: "wordmark", text: "Attend" },
     projects: [
       {
         slug: "attend-operations-dashboard",
-        title: "Attend operations dashboard",
+        title: "Operations dashboard for Pass, Flow, and Flex",
         summary:
-          "Internal dashboard work across Pass, Flow, and Flex, covering inventory, assignments, operations workflows, and shared frontend decisions.",
+          "Internal operations dashboard for inventory, assignments, and workflow coordination across Attend's ticketing products, built to reduce manual support work and improve team throughput.",
         privateProject: true,
         preferredProject: true,
         image: {
@@ -76,9 +76,9 @@ const companies = [
       },
       {
         slug: "attend-flex-gift-card",
-        title: "Flex gift card purchase flow",
+        title: "Flex gift card checkout",
         summary:
-          "Gift-card purchase experience used as the public reference for checkout, partner flow, and transactional frontend work.",
+          "Gift-card purchase flow for Attend Flex, supporting partner-branded checkout and transaction-critical frontend behavior.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Attend Flex gift card flow.",
@@ -92,9 +92,9 @@ const companies = [
       },
       {
         slug: "attend-flex-payments",
-        title: "Attend Flex app",
+        title: "Flex plan configuration and payments",
         summary:
-          "Public Flex surface used as the representative view for payments, partner configuration, and event-product frontend work.",
+          "Configurable Flex product surface for building ticket bundles and experiences, including payment flows and partner-specific product configuration.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Attend Flex app work.",
@@ -114,15 +114,15 @@ const companies = [
     role: "Senior Software Engineer",
     period: "Feb 2023–Aug 2023",
     summary:
-      "Short-cycle product delivery across mobile health and tourism apps, with reusable architecture and modular branding.",
+      "Independent product consulting across mobile health and white-label city and event apps, with reusable architecture and maintainable delivery patterns.",
     companyUrl: "",
     brand: { kind: "wordmark", text: "Consulting" },
     projects: [
       {
         slug: "consulting-health-app",
-        title: "Health app with labs and patient chat",
+        title: "React Native health platform",
         summary:
-          "React Native product connecting lab integrations, patient data, and patient-doctor communication on mobile.",
+          "React Native application that centralized patient health data, integrated third-party lab results, and supported patient-doctor communication.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for consulting health app work.",
@@ -133,7 +133,7 @@ const companies = [
         slug: "consulting-tourism-white-label",
         title: "White-label city and event apps",
         summary:
-          "Reusable mobile codebase adapted across brands for tourism and event experiences with shared product primitives.",
+          "Reusable mobile architecture adapted across city and event apps, improving branding flexibility, delivery speed, and handoff to junior maintainers.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for consulting tourism apps work.",
@@ -145,18 +145,18 @@ const companies = [
   {
     slug: "x-team",
     name: "X-Team",
-    role: "Senior Software Developer",
+    role: "Senior Software Engineer",
     period: "Mar 2021–Feb 2023",
     summary:
-      "Client-facing product work across streaming, internal tooling, studio ops, APIs, browser games, and CI stabilization.",
+      "On-demand engineering company placing senior developers on product teams across client work in media, internal tooling, gaming, and digital fitness.",
     companyUrl: "https://x-team.com",
     brand: { kind: "wordmark", text: "X-Team" },
     projects: [
       {
         slug: "xteam-beachbody-bodi",
-        title: "Beachbody (BODi)",
+        title: "BODi workouts discovery",
         summary:
-          "Workout discovery and filtering improvements on a large digital fitness platform, including the workout filter experience I helped build.",
+          "Workout discovery and filtering improvements on Beachbody On Demand, including the workouts filter experience I helped build and related GraphQL-powered frontend behavior.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Beachbody work.",
@@ -170,9 +170,9 @@ const companies = [
       },
       {
         slug: "xteam-lemonlight",
-        title: "Lemonlight",
+        title: "Lemonlight studio operations",
         summary:
-          "Automated reporting tables, bug fixing, and CI/CD hardening for a video production platform.",
+          "Administrative tooling improvements, auto-table generation, bug fixes, and CI/CD stabilization for a video production platform.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Lemonlight work.",
@@ -181,20 +181,20 @@ const companies = [
       },
       {
         slug: "xteam-kmf-xhq",
-        title: "KMF / XHQ",
+        title: "XHQ invoicing and operations portal",
         summary:
-          "Back-office invoicing and internal portal work spanning APIs, Firebase, operations, and staff tooling.",
+          "Back-office invoicing and internal portal improvements spanning APIs, Firebase, operations workflows, and staff tooling for X-Team's internal systems.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for KMF and XHQ work.",
         },
-        links: [{ label: "X-Team", url: "https://x-team.com" }],
+        links: [{ label: "XHQ", url: "https://xhq.x-team.com/login" }],
       },
       {
         slug: "xteam-xgames",
-        title: "X-Games",
+        title: "X-Games browser game and audio CLI",
         summary:
-          "Browser-based game and CLI audio tooling delivered as part of X-Team internal engagement initiatives.",
+          "Browser-based game work plus CLI audio tooling and backup routines delivered as part of internal X-Team engagement initiatives.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for X-Games work.",
@@ -206,18 +206,18 @@ const companies = [
   {
     slug: "luizalabs",
     name: "Luizalabs",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Frontend Software Engineer",
+    period: "Dec 2020–Mar 2021",
     summary:
-      "Marketplace-scale frontend work in a fast-moving ecommerce context, kept here as a historical progression block.",
+      "Technology and innovation arm of Magalu focused on marketplace and retail product engineering at Brazilian scale.",
     companyUrl: "https://www.magazineluiza.com.br",
     brand: { kind: "wordmark", text: "Luizalabs" },
     projects: [
       {
         slug: "luizalabs-marketplace-placeholder",
-        title: "Marketplace frontend placeholder",
+        title: "Marketplace micro frontend foundations",
         summary:
-          "Reserved project slot for marketplace work until the exact internal product names are curated.",
+          "Micro frontend architecture, shared component work, and React enablement material built to improve UI consistency and delivery speed across marketplace surfaces.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Luizalabs work.",
@@ -229,21 +229,21 @@ const companies = [
   {
     slug: "zup",
     name: "Zup",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Frontend Software Engineer",
+    period: "Aug 2019–Dec 2020",
     summary:
-      "Historical frontend work represented as a company block ready for later project-level curation.",
+      "Brazilian technology company building digital products and platform work for large enterprises through consulting and product engineering teams, with some client engagements kept confidential.",
     companyUrl: "https://www.zup.com.br",
     brand: { kind: "wordmark", text: "Zup" },
     projects: [
       {
         slug: "zup-placeholder",
-        title: "Product work placeholder",
+        title: "Confidential fleet telemetry platform",
         summary:
-          "Placeholder card for Zup projects until the internal product names and screenshots are finalized.",
+          "Telemetry dashboards and real-time logistics visualizations delivered through Zup for a confidential truck-platform client, combining D3.js frontend work, backend integrations, and performance improvements.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
-          alt: "Placeholder image for Zup work.",
+          alt: "Abstract portfolio-safe cover artwork for Zup client work.",
         },
         links: [{ label: "Zup", url: "https://www.zup.com.br" }],
       },
@@ -252,64 +252,64 @@ const companies = [
   {
     slug: "ng-informatica",
     name: "NG Informática",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Frontend Software Engineer",
+    period: "Sep 2018–Aug 2019",
     summary:
-      "Legacy company block kept explicit so the experience sequence remains editable from data only.",
-    companyUrl: "",
+      "TOTVS software partner focused on enterprise management solutions across maintenance, fleet, facilities, occupational health, and environmental workflows.",
+    companyUrl: "https://www.ngi.com.br/",
     brand: { kind: "wordmark", text: "NG Informática" },
     projects: [
       {
         slug: "ng-informatica-placeholder",
-        title: "Internal product placeholder",
+        title: "Enterprise maintenance and operations frontend",
         summary:
-          "Placeholder card for NG Informática work until the exact product context is curated.",
+          "React and GraphQL product work for enterprise management software, including frontend modernization, Cypress-based BDD, and testing improvements.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for NG Informática work.",
         },
-        links: [{ label: "Details pending", url: "#" }],
+        links: [{ label: "NG Informática", url: "https://www.ngi.com.br/" }],
       },
     ],
   },
   {
     slug: "coblue",
-    name: "CoBlue",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    name: "CoBlue OKR",
+    role: "Frontend Software Engineer",
+    period: "Jun 2018–Dec 2018",
     summary:
-      "Earlier company slot maintained as a structured block with room for later expansion of the project list.",
-    companyUrl: "",
+      "Performance-management software company centered on OKR-driven strategy execution, goals, and continuous team feedback.",
+    companyUrl: "https://coblue.com.br/",
     brand: { kind: "wordmark", text: "CoBlue" },
     projects: [
       {
         slug: "coblue-placeholder",
-        title: "Client product placeholder",
+        title: "OKR platform re-architecture",
         summary:
-          "Reserved placeholder for CoBlue project work and screenshots.",
+          "Performance and scalability improvements on the main OKR product, including a Vue-to-React migration for critical product surfaces.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for CoBlue work.",
         },
-        links: [{ label: "Details pending", url: "#" }],
+        links: [{ label: "CoBlue", url: "https://coblue.com.br/" }],
       },
     ],
   },
   {
     slug: "totvs",
     name: "TOTVS",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Software Developer",
+    period: "Feb 2017–Oct 2017",
     summary:
-      "Enterprise product work represented as an editable company slide with placeholder project slots for later detail.",
+      "Latin American enterprise software company building ERP, HR, workflow, and business platform products at large scale.",
     companyUrl: "https://www.totvs.com",
     brand: { kind: "wordmark", text: "TOTVS" },
     projects: [
       {
         slug: "totvs-placeholder",
-        title: "Enterprise platform placeholder",
+        title: "THF component library and tooling",
         summary:
-          "Placeholder card for TOTVS project work until exact modules and visuals are curated.",
+          "Early design-system and developer-experience work, including Angular and TypeScript components for THF (later PO UI) and a VSCode snippets extension.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for TOTVS work.",
@@ -321,46 +321,46 @@ const companies = [
   {
     slug: "envolve-labs",
     name: "Envolve Labs",
-    role: "Frontend Engineer",
-    period: "Earlier experience",
+    role: "Full-Stack Developer",
+    period: "Nov 2017–Jun 2018",
     summary:
-      "Early-company slot preserved in the same data model so the entire work history stays reorderable from one place.",
-    companyUrl: "",
+      "Joinville software studio building websites, mobile apps, and custom digital products for Brazilian clients, including engagements that remain client-confidential in the portfolio.",
+    companyUrl: "https://envolvelabs.com/",
     brand: { kind: "wordmark", text: "Envolve Labs" },
     projects: [
       {
         slug: "envolve-labs-placeholder",
-        title: "Product placeholder",
+        title: "Confidential refrigerated logistics suite",
         summary:
-          "Placeholder card for Envolve Labs work, ready to be replaced with exact project information.",
+          "Web and mobile monitoring product delivered through Envolve Labs for a confidential logistics client, built across Angular, Ionic, and Firebase with a maintainable handoff structure.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
-          alt: "Placeholder image for Envolve Labs work.",
+          alt: "Abstract portfolio-safe cover artwork for Envolve Labs client work.",
         },
-        links: [{ label: "Details pending", url: "#" }],
+        links: [{ label: "Envolve Labs", url: "https://envolvelabs.com/" }],
       },
     ],
   },
   {
     slug: "catolica",
-    name: "Católica",
-    role: "Researcher",
-    period: "Academic period",
+    name: "Católica SC",
+    role: "Software Research Assistant",
+    period: "Aug 2015–Aug 2017",
     summary:
-      "Academic research block kept alongside commercial experience because the work history runs from Cyber through Católica.",
-    companyUrl: "",
-    brand: { kind: "wordmark", text: "Católica" },
+      "Higher-education institution in Santa Catarina with undergraduate programs, applied projects, and academic research activity.",
+    companyUrl: "https://www.catolicasc.org.br/",
+    brand: { kind: "wordmark", text: "Católica SC" },
     projects: [
       {
         slug: "catolica-research-placeholder",
-        title: "Research project placeholder",
+        title: "BPMN 2.0 research tooling",
         summary:
-          "Placeholder card for research work at Católica until the exact project title and visual material are curated.",
+          "Academic research work with Camunda, Java, and AngularJS for BPMN 2.0 process modeling, plus internal presentations on Git, Arduino, and LaTeX.",
         image: {
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Católica research work.",
         },
-        links: [{ label: "Details pending", url: "#" }],
+        links: [{ label: "Católica SC", url: "https://www.catolicasc.org.br/" }],
       },
     ],
   },
@@ -369,22 +369,29 @@ const companies = [
 module.exports = companies.map((company) => ({
   ...company,
   projects: company.projects.map((project) => ({
-    ...project,
-    type: project.type || company.name,
-    links: normalizeLinks(project.links),
-    images:
-      project.images ||
-      (project.image
-        ? [
-            resolveImage({
-              preferredPublicPath: getCompanyProjectScreenshotPublicPath(
-                company.slug,
-                project.slug,
-              ),
-              fallbackImage: project.image,
-              alt: `Screenshot of ${project.title}.`,
-            }),
-          ]
-        : []),
+    ...(() => {
+      const resolvedImages =
+        project.images ||
+        (project.image
+          ? [
+              resolveImage({
+                preferredPublicPath: getCompanyProjectScreenshotPublicPath(
+                  company.slug,
+                  project.slug,
+                ),
+                fallbackImage: project.image,
+                alt: project.image.alt || `Cover image for ${project.title}.`,
+              }),
+            ]
+          : []);
+
+      return {
+        ...project,
+        type: project.type || company.name,
+        image: resolvedImages[0] || project.image,
+        links: normalizeLinks(project.links),
+        images: resolvedImages,
+      };
+    })(),
   })),
 }));

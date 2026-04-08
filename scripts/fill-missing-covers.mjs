@@ -100,6 +100,7 @@ function buildTargets() {
 async function generatePlaceholder(target, index) {
   const variant = palette[index % palette.length];
   const outputPath = toSourcePath(target.publicPath);
+  const markerPath = path.join(path.dirname(outputPath), "cover.placeholder");
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
 
@@ -132,6 +133,8 @@ async function generatePlaceholder(target, index) {
     .composite([{ input: Buffer.from(textSvg), top: 0, left: 0 }])
     .png()
     .toFile(outputPath);
+
+  await fs.writeFile(markerPath, "generated placeholder\n");
 }
 
 async function run() {

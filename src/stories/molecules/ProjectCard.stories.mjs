@@ -10,6 +10,6 @@ export default {
 export const TierOneProject = {
   render: () =>
     renderTemplate("components/molecules/project-card.njk", {
-      project: catalog.tier1Entries[0],
+      project: catalog.tier1Projects[0],
     }),
 };

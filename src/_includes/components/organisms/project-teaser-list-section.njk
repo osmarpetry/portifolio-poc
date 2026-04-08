@@ -1,0 +1,7 @@
+{% if teaserProjects and teaserProjects.length %}
+  <ul class="company-teaser-list project-teaser-list" aria-label="{{ teaserTitle or 'More projects' }}">
+    {% for project in teaserProjects %}
+      {% include "components/molecules/project-teaser-item.njk" %}
+    {% endfor %}
+  </ul>
+{% endif %}
