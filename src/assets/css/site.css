@@ -183,12 +183,24 @@ button:focus-visible {
   min-height: clamp(420px, 62vh, 680px);
   border-radius: 32px;
   overflow: hidden;
-  background-image: url("/assets/images/hero/osmar-hero.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: #203629;
   display: flex;
   align-items: center;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.hero-media__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .hero-banner::before {
@@ -453,6 +465,17 @@ li {
   grid-auto-columns: minmax(0, 1fr);
 }
 
+.project-media picture,
+.company-project-card__media picture,
+.company-detail-card__media picture,
+.mentorship-media__frame picture,
+.tier-entry-card__media picture,
+.tier-entry-card__archive-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .project-media img {
   display: block;
   width: 100%;
@@ -620,6 +643,7 @@ li {
 }
 
 .company-project-card__media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -689,13 +713,25 @@ li {
   min-height: clamp(380px, 56vh, 620px);
   border-radius: 32px;
   overflow: hidden;
-  background-image: url("/assets/images/hero/osmar-about.jpeg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: #203629;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.about-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.about-media__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 /* Gradient darkens on the right so the card is readable */
@@ -1007,7 +1043,10 @@ li {
     border-radius: 22px;
     align-items: flex-end;
     padding: 1.5rem 0;
-    background-position: right center;
+  }
+
+  .hero-media__image {
+    object-position: right center;
   }
 
   /* Remove box-shadow: overflow:hidden on the banner clips it into

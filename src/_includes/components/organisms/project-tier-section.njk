@@ -27,7 +27,41 @@
           data-project-card="{{ project.slug }}"
           {% if projectAliases | length %}data-project-aliases="{{ projectAliases | join(",") }}"{% endif %}
         >
-          {% include "partials/project-card.njk" %}
+          <article class="project-card">
+            <div class="project-media{% if project.images | length > 1 %} project-media--gallery{% endif %}">
+              {% for image in project.images %}
+                {% responsiveImage
+                  image.src,
+                  image.alt,
+                  "(max-width: 900px) 100vw, 50vw",
+                  {
+                    loading: "lazy",
+                    decoding: "async",
+                    widths: [480, 768, 1024, 1280, 1600],
+                    width: 1600,
+                    height: 1000
+                  }
+                %}
+              {% endfor %}
+            </div>
+            <div class="project-body">
+              <p class="project-type">{{ project.type }}</p>
+              <h3>{{ project.title }}</h3>
+              <p class="project-summary">{{ project.summary }}</p>
+              {% if project.stack %}
+                <p class="stack-line">
+                  <span>Stack</span>{{ project.stack | join(" · ") }}
+                </p>
+              {% endif %}
+              {% if project.links %}
+                <div class="project-links">
+                  {% for link in project.links %}
+                    <a href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.label }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </article>
         </div>
       {% endfor %}
     </div>

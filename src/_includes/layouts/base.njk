@@ -28,7 +28,47 @@
       {{ content | safe }}
     </main>
     {% if showAboutAtPageEnd != false and (canonicalPath or page.url) != "/" %}
-      {% include "partials/about.njk" %}
+      <section class="section section-about" id="about">
+        <div class="container about-shell">
+          <div class="about-banner">
+            {% responsiveImage
+              "/assets/images/hero/osmar-about.jpeg",
+              "",
+              "100vw",
+              {
+                className: "about-media",
+                imgClassName: "about-media__image",
+                loading: "lazy",
+                decoding: "async",
+                widths: [640, 960, 1280, 1600]
+              }
+            %}
+            <div class="about-card">
+              <p class="eyebrow">About</p>
+              <h2>About me</h2>
+              <div class="about-copy">
+                <p>
+                  Based in Luxembourg, I work best in frontend-focused full
+                  stack product environments where UI quality, backend
+                  integrations, testing, performance, and developer experience
+                  all need to hold together in production.
+                </p>
+                <p>
+                  The strongest fit is product platform work across web and
+                  mobile: scheduling, admin surfaces, operational workflows,
+                  realtime behavior, and maintainable systems that other
+                  engineers can extend safely as the product grows.
+                </p>
+              </div>
+              <div class="about-links">
+                <a href="{{ site.github }}" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="{{ site.linkedin }}" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="mailto:{{ site.email }}">Email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     {% endif %}
     {% include "partials/footer.njk" %}
     <script src="/assets/js/pwa.js" defer></script>

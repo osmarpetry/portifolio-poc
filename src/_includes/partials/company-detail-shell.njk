@@ -48,13 +48,18 @@
       {% for project in company.projects %}
         <article class="company-detail-card" id="{{ project.slug }}">
           <div class="company-detail-card__media">
-            <img
-              src="{{ project.image.src }}"
-              alt="{{ project.image.alt }}"
-              loading="lazy"
-              width="1200"
-              height="800"
-            />
+            {% responsiveImage
+              project.image.src,
+              project.image.alt,
+              "(max-width: 900px) 100vw, 92vw",
+              {
+                loading: "lazy",
+                decoding: "async",
+                widths: [480, 768, 1024, 1280, 1600],
+                width: 1200,
+                height: 800
+              }
+            %}
           </div>
           <div class="company-detail-card__body">
             <h2 class="company-detail-card__title">{{ project.title }}</h2>

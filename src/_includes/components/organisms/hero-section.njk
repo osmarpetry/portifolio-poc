@@ -1,6 +1,19 @@
 <section class="hero section" id="intro">
   <div class="container hero-shell">
     <div class="hero-banner">
+      {% responsiveImage
+        "/assets/images/hero/osmar-hero.jpg",
+        "",
+        "100vw",
+        {
+          className: "hero-media",
+          imgClassName: "hero-media__image",
+          loading: "eager",
+          fetchpriority: "high",
+          decoding: "async",
+          widths: [640, 960, 1280, 1440]
+        }
+      %}
       <div class="hero-card">
         <p class="eyebrow">Portfolio</p>
         <h1>Osmar Petry</h1>

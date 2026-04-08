@@ -11,7 +11,7 @@
  * Usage:  node scripts/optimize.mjs
  */
 
-import { readFile, writeFile, readdir, stat, mkdir } from "node:fs/promises";
+import { readFile, writeFile, readdir } from "node:fs/promises";
 import { join, extname, relative } from "node:path";
 import { transform } from "lightningcss";
 import { minify } from "terser";
@@ -135,6 +135,12 @@ async function optimizeImages() {
   let totalAfter = 0;
 
   for (const file of files) {
+    const relativePath = relative(SITE_DIR, file).replace(/\\/g, "/");
+
+    if (relativePath.startsWith("assets/img/")) {
+      continue;
+    }
+
     const raw = await readFile(file);
     const before = raw.length;
     totalBefore += before;
@@ -172,7 +178,7 @@ async function optimizeImages() {
 
     const saved = ((1 - optimised.length / before) * 100).toFixed(1);
     console.log(
-      `  [img] ${relative(SITE_DIR, file)}  ${prettyBytes(before)} → ${prettyBytes(optimised.length)}  (−${saved}%)  + WebP ${prettyBytes(webpBuf.length)}`,
+      `  [img] ${relativePath}  ${prettyBytes(before)} → ${prettyBytes(optimised.length)}  (−${saved}%)  + WebP ${prettyBytes(webpBuf.length)}`,
     );
   }
 

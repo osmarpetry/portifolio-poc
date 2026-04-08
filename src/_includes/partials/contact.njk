@@ -5,13 +5,18 @@
         <div class="mentorship-media" aria-hidden="true">
           {% for image in contactProject.images %}
             <figure class="mentorship-media__frame">
-              <img
-                src="{{ image.src }}"
-                alt="{{ image.alt }}"
-                loading="lazy"
-                width="1600"
-                height="1000"
-              />
+              {% responsiveImage
+                image.src,
+                image.alt,
+                "(max-width: 900px) 100vw, 50vw",
+                {
+                  loading: "lazy",
+                  decoding: "async",
+                  widths: [320, 480, 640, 800],
+                  width: 1600,
+                  height: 1000
+                }
+              %}
             </figure>
           {% endfor %}
         </div>

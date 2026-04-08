@@ -20,13 +20,18 @@
       {% endif %}
     {% endfor %}
     <div class="tier-entry-card__media">
-      <img
-        src="{{ entry.images[0].src }}"
-        alt="{{ entry.images[0].alt }}"
-        loading="lazy"
-        width="1600"
-        height="1000"
-      />
+      {% responsiveImage
+        entry.images[0].src,
+        entry.images[0].alt,
+        "(max-width: 900px) 100vw, 92vw",
+        {
+          loading: "lazy",
+          decoding: "async",
+          widths: [480, 768, 1024, 1280, 1600],
+          width: 1600,
+          height: 1000
+        }
+      %}
     </div>
     <div class="tier-entry-card__body">
       <p class="project-type">{{ entry.type }}</p>
@@ -64,13 +69,18 @@
       {% endif %}
     {% endfor %}
     <div class="tier-entry-card__media">
-      <img
-        src="{{ entry.images[0].src }}"
-        alt="{{ entry.images[0].alt }}"
-        loading="lazy"
-        width="1200"
-        height="750"
-      />
+      {% responsiveImage
+        entry.images[0].src,
+        entry.images[0].alt,
+        "(max-width: 900px) 100vw, 50vw",
+        {
+          loading: "lazy",
+          decoding: "async",
+          widths: [320, 480, 640, 768, 960, 1280],
+          width: 1200,
+          height: 750
+        }
+      %}
     </div>
     <div class="tier-entry-card__body">
       <p class="project-type">{{ entry.type }}</p>
@@ -109,13 +119,18 @@
     {% endfor %}
     <div class="tier-entry-card__archive-inner">
       <div class="tier-entry-card__archive-media">
-        <img
-          src="{{ entry.images[0].src }}"
-          alt="{{ entry.images[0].alt }}"
-          loading="lazy"
-          width="400"
-          height="250"
-        />
+        {% responsiveImage
+          entry.images[0].src,
+          entry.images[0].alt,
+          "(max-width: 900px) 100vw, 400px",
+          {
+            loading: "lazy",
+            decoding: "async",
+            widths: [320, 480, 640, 800],
+            width: 400,
+            height: 250
+          }
+        %}
       </div>
       <div class="tier-entry-card__body">
         <div class="tier-entry-card__archive-header">

@@ -1,6 +1,18 @@
 <section class="section section-about" id="about">
   <div class="container about-shell">
     <div class="about-banner">
+      {% responsiveImage
+        "/assets/images/hero/osmar-about.jpeg",
+        "",
+        "100vw",
+        {
+          className: "about-media",
+          imgClassName: "about-media__image",
+          loading: "lazy",
+          decoding: "async",
+          widths: [640, 960, 1280, 1600]
+        }
+      %}
       <div class="about-card">
         <p class="eyebrow">About</p>
         <h2>About me</h2>
