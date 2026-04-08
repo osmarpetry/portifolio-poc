@@ -5,7 +5,6 @@ eleventyExcludeFromCollections: true
 const CACHE_VERSION = "portfolio-{{ site.buildVersion }}";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const CACHE_PREFIX = "portfolio-";
-const APP_SHELL = "/";
 
 /**
  * Shell-only precache.
@@ -60,13 +59,6 @@ async function cacheNetworkResponse(request, response) {
 
   const cache = await caches.open(STATIC_CACHE);
   await cache.put(request, response.clone());
-  const pathname = new URL(request.url).pathname;
-  const isFileRequest = /\.[a-z0-9]+$/i.test(pathname);
-
-  if ((request.mode === "navigate" && !isFileRequest) || pathname === "/") {
-    await cache.put(APP_SHELL, response.clone());
-    await cache.put("/index.html", response.clone());
-  }
 
   return response;
 }
@@ -80,16 +72,30 @@ async function fetchAndCache(request) {
   }
 }
 
-async function respondWithShell() {
+async function respondWithCachedDocument(request) {
   const cache = await caches.open(STATIC_CACHE);
-  return (
-    (await cache.match(APP_SHELL)) ||
-    (await cache.match("/index.html")) ||
-    new Response("Offline", {
-      status: 503,
-      headers: { "Content-Type": "text/plain; charset=utf-8" },
-    })
-  );
+  const requestUrl = new URL(request.url);
+  const pathname = requestUrl.pathname;
+
+  const candidates = [
+    request,
+    pathname,
+    pathname.endsWith("/") ? `${pathname}index.html` : `${pathname}/index.html`,
+    pathname === "/" ? "/index.html" : null,
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    const cached = await cache.match(candidate);
+
+    if (cached) {
+      return cached;
+    }
+  }
+
+  return new Response("Offline", {
+    status: 503,
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
 }
 
 self.addEventListener("fetch", (event) => {
@@ -109,17 +115,13 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate" && !isFileRequest) {
     event.respondWith(
       (async () => {
-        const cache = await caches.open(STATIC_CACHE);
-        const cachedShell =
-          (await cache.match(APP_SHELL)) || (await cache.match("/index.html"));
+        const networkResponse = await fetchAndCache(request);
 
-        if (cachedShell) {
-          event.waitUntil(fetchAndCache(request));
-          return cachedShell;
+        if (networkResponse) {
+          return networkResponse;
         }
 
-        const networkResponse = await fetchAndCache(request);
-        return networkResponse || respondWithShell();
+        return respondWithCachedDocument(request);
       })()
     );
     return;
@@ -148,7 +150,7 @@ self.addEventListener("fetch", (event) => {
           });
         }
 
-        return respondWithShell();
+        return respondWithCachedDocument(request);
       }
 
       return new Response("", {
