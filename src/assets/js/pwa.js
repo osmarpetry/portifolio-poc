@@ -18,6 +18,57 @@ const navShell = document.querySelector("[data-nav-shell]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navLinks = document.querySelector("[data-nav-links]");
 const mobileNavMq = window.matchMedia("(max-width: 700px)");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function shouldSmoothScrollAnchor(link) {
+  if (!link?.hash || link.hash === "#") {
+    return false;
+  }
+
+  if (link.classList.contains("skip-link")) {
+    return false;
+  }
+
+  const currentUrl = new URL(window.location.href);
+  const linkUrl = new URL(link.href, window.location.origin);
+
+  return (
+    currentUrl.origin === linkUrl.origin &&
+    currentUrl.pathname === linkUrl.pathname
+  );
+}
+
+document.querySelectorAll('a[href*="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    if (!shouldSmoothScrollAnchor(link)) {
+      return;
+    }
+
+    const target = document.querySelector(link.hash);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    history.pushState(null, "", link.hash);
+    target.scrollIntoView({
+      block: "start",
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+  });
+});
 
 if (navShell && navToggle && navLinks) {
   const setNavOpen = (isOpen) => {
