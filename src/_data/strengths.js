@@ -1,22 +1,22 @@
 module.exports = [
   {
-    title: "Testing discipline",
+    title: "Frontend-focused full stack delivery",
     summary:
-      "Playwright, Vitest, Cypress, and Storybook-backed workflows are part of how I keep behavior stable while the UI evolves.",
+      "React, Next.js, TypeScript, Node.js, and GraphQL across product features, backend integrations, and production delivery.",
   },
   {
-    title: "Architecture judgment",
+    title: "Testing and reliability",
     summary:
-      "I pay attention to boundaries, state shape, and failure paths so the next feature does not cost more than the first one.",
+      "Playwright, Jest, Cypress, Testing Library, and Storybook-backed workflows to keep critical product behavior stable as the UI evolves.",
   },
   {
-    title: "Modern frontend delivery",
+    title: "Product platform complexity",
     summary:
-      "React, Next.js, TypeScript, GraphQL, MSW, and auth-heavy flows are familiar tools, not portfolio decoration.",
+      "Experience across scheduling, payments, admin surfaces, realtime dashboards, cross-product consistency, and operational workflows.",
   },
   {
-    title: "Range across product types",
+    title: "Developer experience and maintainability",
     summary:
-      "The project set spans dashboards, browser extensions, map interfaces, and integration demos with product-facing complexity.",
+      "Strong focus on component structure, documentation, CI/CD health, mentoring, and codebases that other engineers can extend safely.",
   },
 ];
