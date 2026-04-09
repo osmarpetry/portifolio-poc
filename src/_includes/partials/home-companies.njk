@@ -1,0 +1,22 @@
+<section class="section section-companies" id="companies">
+  <div class="container">
+    <h2 class="section-companies__title">Companies</h2>
+
+    <div class="companies-grid">
+      {% for company in companies %}
+        <div class="company-item" title="{{ company.name }}">
+          {% if company.brand.kind == "logo" and company.brand.src %}
+            <img
+              class="company-item__logo"
+              src="{{ company.brand.src }}"
+              alt="{{ company.name }}"
+              loading="lazy"
+            />
+          {% else %}
+            <span class="company-item__name">{{ company.brand.text or company.name }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -64,6 +64,7 @@ function deriveProject(project) {
   return {
     ...project,
     type: `Tier ${project.tier}`,
+    tierLabel: `Tier ${project.tier}`,
     images: imagePath
       ? [
           {
@@ -171,12 +172,20 @@ const homeCompanyProjects = homeCompanyHighlightOrder
   })
   .filter(Boolean);
 
+const orderedTierKeys = ["1", "2", "3"];
+const projectsWithImagesOrdered = orderedTierKeys.flatMap((key) => projectsWithImagesByTier[key]);
+const projectsWithoutImagesOrdered = orderedTierKeys.flatMap(
+  (key) => projectsWithoutImagesByTier[key],
+);
+
 module.exports = {
   allReposCount: derivedProjects.reduce((total, project) => total + project.repos.length, 0),
   companiesBySlug,
   homeCompanyProjects,
   homeTier1PreviewProjects,
   projectByRepoSlug,
+  projectsWithImagesOrdered,
+  projectsWithoutImagesOrdered,
   projectsByTier,
   projectsWithImagesByTier,
   projectsWithoutImagesByTier,

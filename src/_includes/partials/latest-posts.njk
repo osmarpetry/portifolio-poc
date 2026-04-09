@@ -1,0 +1,37 @@
+<section class="section section-home-posts" id="latest-posts">
+  <div class="container">
+    {% set headingEyebrow = "Latest writing" %}
+    {% set headingTitle = "Recent posts from the notes and articles archive." %}
+    {% set headingDescription = "Short previews from the posts page, using the same fast-scanning list rhythm as the rest of the portfolio." %}
+    {% set headingLevel = "h2" %}
+    {% include "components/molecules/section-heading.njk" %}
+
+    <ul class="company-teaser-list home-post-list" aria-label="Latest posts">
+      {% for post in collections.posts %}
+        {% if loop.index <= 4 %}
+          <li class="company-teaser-item home-post-item">
+            <a class="company-teaser-item__link home-post-item__link" href="{{ post.url }}">
+              <span class="company-teaser-item__name home-post-item__name">
+                {{ post.data.title }}
+              </span>
+              <span class="company-teaser-item__meta home-post-item__meta">
+                <span class="company-teaser-item__role home-post-item__date">
+                  <time datetime="{{ post.date | dateISO }}">{{ post.date | readableDate }}</time>
+                </span>
+                {% for tag in post.data.tags or [] %}
+                  {% if loop.index <= 3 %}
+                    <span class="company-teaser-item__count home-post-item__chip">{{ tag }}</span>
+                  {% endif %}
+                {% endfor %}
+              </span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <div class="company-teaser-cta">
+      <a class="action-link action-link--tier" href="/posts/">Open all posts</a>
+    </div>
+  </div>
+</section>

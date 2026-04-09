@@ -1,17 +1,17 @@
 <section class="section section-work" id="selected-work">
   <div class="container">
     {% set sectionId = "tier-1-projects" %}
-    {% set sectionEyebrow = "Projects page" %}
-    {% set sectionTitle = catalog.tierDescriptions["1"].title %}
+    {% set sectionEyebrow = "Independent work" %}
+    {% set sectionTitle = "Projects, experiments, and assessments." %}
     {% set sectionTitleHref = "/#selected-work" %}
-    {% set sectionDescription = catalog.tierDescriptions["1"].description %}
+    {% set sectionDescription = "Selected self-directed builds kept separate from professional company work. The projects page preserves the tier order, but the intent here is independent exploration and implementation range." %}
     {% set sectionProjects = catalog.homeTier1PreviewProjects %}
     {% set sectionListProjects = [] %}
     {% set sectionListTitle = "" %}
     {% set sectionListEyebrow = "" %}
     {% set sectionListDescription = "" %}
     {% set sectionCtaUrl = "/projects/" %}
-    {% set sectionCtaLabel = "See all projects" %}
+    {% set sectionCtaLabel = "See all independent projects" %}
     {% include "partials/project-tier-section.njk" %}
   </div>
 </section>

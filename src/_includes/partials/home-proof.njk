@@ -1,0 +1,54 @@
+<section class="section section-home-proof" id="experience">
+  <div class="container">
+    <div class="home-proof-header">
+      <h2 class="home-proof-header__title">Experience</h2>
+    </div>
+
+    {# Company logos strip #}
+    <ul class="company-logo-strip" aria-label="Companies I've worked with">
+      {% for company in companies %}
+        <li class="company-logo-strip__item">
+          {% if company.brand.kind == "logo" and company.brand.src %}
+            <img
+              class="company-logo-strip__image"
+              src="{{ company.brand.src }}"
+              alt="{{ company.brand.alt }}"
+              loading="lazy"
+              width="140"
+              height="48"
+            />
+          {% else %}
+            <span class="company-logo-strip__wordmark">{{ company.brand.text or company.name }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {# Mentorship section - prominent photos #}
+    <a
+      href="{{ contactProject.links[0].url }}"
+      target="_blank"
+      rel="noreferrer"
+      class="mentorship-section"
+      aria-label="View mentorship details on LinkedIn"
+    >
+      <div class="mentorship-photos">
+        {% for image in contactProject.images %}
+          <figure class="mentorship-photos__frame">
+            <img
+              src="{{ image.src }}"
+              alt="{{ image.alt }}"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        {% endfor %}
+      </div>
+      <div class="mentorship-content">
+        <span class="mentorship-label">Mentorship</span>
+        <h3 class="mentorship-title">I help engineers grow in frontend, product thinking, and engineering judgment.</h3>
+        <span class="mentorship-link">See on LinkedIn →</span>
+      </div>
+    </a>
+  </div>
+</section>

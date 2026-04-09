@@ -347,6 +347,22 @@ module.exports = function (eleventyConfig) {
   };
 
   eleventyConfig.setLibrary("md", md);
+  eleventyConfig.addFilter("renderInlineMarkdownParagraphs", (content = "") => {
+    const normalizedContent = String(content || "").trim();
+
+    if (!normalizedContent) {
+      return "";
+    }
+
+    const paragraphs = normalizedContent
+      .split(/\n\s*\n/)
+      .map((paragraph) => paragraph.replace(/\s*\n\s*/g, " ").trim())
+      .filter(Boolean);
+
+    return paragraphs
+      .map((paragraph) => `<p>${md.renderInline(paragraph).trim()}</p>`)
+      .join("");
+  });
 
   eleventyConfig.addCollection("posts", (collection) =>
     collection

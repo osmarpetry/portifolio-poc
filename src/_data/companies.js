@@ -37,7 +37,12 @@ const companies = [
     summary:
       "Cybersecurity hiring platform focused on matching companies with verified security talent through recruiting, scheduling, and identity-aware product flows.",
     companyUrl: "https://cyberr.ai/",
-    brand: { kind: "wordmark", text: "Cyberr" },
+    brand: {
+      kind: "logo",
+      text: "Cyberr",
+      src: "/assets/images/company-logos/cyber.png",
+      alt: "Cyberr logo",
+    },
     projects: [
       {
         slug: "cyberr-ai-platform",
@@ -60,7 +65,12 @@ const companies = [
     summary:
       "Ticketing and live-event commerce platform spanning passes, memberships, gift cards, and flexible fan experiences for sports and entertainment organizations.",
     companyUrl: "https://www.attend.tech",
-    brand: { kind: "wordmark", text: "Attend" },
+    brand: {
+      kind: "logo",
+      text: "Attend",
+      src: "/assets/images/company-logos/attend-dark.png",
+      alt: "Attend logo",
+    },
     projects: [
       {
         slug: "attend-operations-dashboard",
@@ -150,7 +160,12 @@ const companies = [
     summary:
       "On-demand engineering company placing senior developers on product teams across client work in media, internal tooling, gaming, and digital fitness.",
     companyUrl: "https://x-team.com",
-    brand: { kind: "wordmark", text: "X-Team" },
+    brand: {
+      kind: "logo",
+      text: "X-Team",
+      src: "/assets/images/company-logos/x-team.svg",
+      alt: "X-Team logo",
+    },
     projects: [
       {
         slug: "xteam-beachbody-bodi",
@@ -211,7 +226,12 @@ const companies = [
     summary:
       "Technology and innovation arm of Magalu focused on marketplace and retail product engineering at Brazilian scale.",
     companyUrl: "https://www.magazineluiza.com.br",
-    brand: { kind: "wordmark", text: "Luizalabs" },
+    brand: {
+      kind: "logo",
+      text: "Luizalabs",
+      src: "/assets/images/company-logos/luizalabs.svg",
+      alt: "Magazine Luiza wordmark used for Luizalabs",
+    },
     projects: [
       {
         slug: "luizalabs-marketplace-placeholder",
@@ -234,7 +254,12 @@ const companies = [
     summary:
       "Brazilian technology company building digital products and platform work for large enterprises through consulting and product engineering teams, with some client engagements kept confidential.",
     companyUrl: "https://www.zup.com.br",
-    brand: { kind: "wordmark", text: "Zup" },
+    brand: {
+      kind: "logo",
+      text: "Zup",
+      src: "/assets/images/company-logos/zup.png",
+      alt: "Zup icon",
+    },
     projects: [
       {
         slug: "zup-placeholder",
@@ -257,7 +282,12 @@ const companies = [
     summary:
       "TOTVS software partner focused on enterprise management solutions across maintenance, fleet, facilities, occupational health, and environmental workflows.",
     companyUrl: "https://www.ngi.com.br/",
-    brand: { kind: "wordmark", text: "NG Informática" },
+    brand: {
+      kind: "logo",
+      text: "NG Informática",
+      src: "/assets/images/company-logos/ng-informatica.png",
+      alt: "NG Informática logo",
+    },
     projects: [
       {
         slug: "ng-informatica-placeholder",
@@ -280,7 +310,12 @@ const companies = [
     summary:
       "Performance-management software company centered on OKR-driven strategy execution, goals, and continuous team feedback.",
     companyUrl: "https://coblue.com.br/",
-    brand: { kind: "wordmark", text: "CoBlue" },
+    brand: {
+      kind: "logo",
+      text: "CoBlue",
+      src: "/assets/images/company-logos/coblue.png",
+      alt: "CoBlue icon",
+    },
     projects: [
       {
         slug: "coblue-placeholder",
@@ -303,7 +338,12 @@ const companies = [
     summary:
       "Latin American enterprise software company building ERP, HR, workflow, and business platform products at large scale.",
     companyUrl: "https://www.totvs.com",
-    brand: { kind: "wordmark", text: "TOTVS" },
+    brand: {
+      kind: "logo",
+      text: "TOTVS",
+      src: "/assets/images/company-logos/totvs.png",
+      alt: "TOTVS icon",
+    },
     projects: [
       {
         slug: "totvs-placeholder",
@@ -326,7 +366,12 @@ const companies = [
     summary:
       "Joinville software studio building websites, mobile apps, and custom digital products for Brazilian clients, including engagements that remain client-confidential in the portfolio.",
     companyUrl: "https://envolvelabs.com/",
-    brand: { kind: "wordmark", text: "Envolve Labs" },
+    brand: {
+      kind: "logo",
+      text: "Envolve Labs",
+      src: "/assets/images/company-logos/envolve-labs.png",
+      alt: "Envolve Labs logo",
+    },
     projects: [
       {
         slug: "envolve-labs-placeholder",
@@ -349,7 +394,12 @@ const companies = [
     summary:
       "Higher-education institution in Santa Catarina with undergraduate programs, applied projects, and academic research activity.",
     companyUrl: "https://www.catolicasc.org.br/",
-    brand: { kind: "wordmark", text: "Católica SC" },
+    brand: {
+      kind: "logo",
+      text: "Católica SC",
+      src: "/assets/images/company-logos/catolica.png",
+      alt: "Católica SC icon",
+    },
     projects: [
       {
         slug: "catolica-research-placeholder",
@@ -360,7 +410,9 @@ const companies = [
           src: "/assets/images/screenshots/shared/company-project-placeholder.svg",
           alt: "Placeholder image for Católica research work.",
         },
-        links: [{ label: "Católica SC", url: "https://www.catolicasc.org.br/" }],
+        links: [
+          { label: "Católica SC", url: "https://www.catolicasc.org.br/" },
+        ],
       },
     ],
   },

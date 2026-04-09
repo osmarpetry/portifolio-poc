@@ -18,6 +18,9 @@
       <span class="company-teaser-item__role project-teaser-item__summary">
         {{ project.summary }}
       </span>
+      <span class="company-teaser-item__count project-teaser-item__chip">
+        {{ project.tierLabel or ("Tier " ~ project.tier) }}
+      </span>
       {% for stackItem in project.stack or [] %}
         <span class="company-teaser-item__count project-teaser-item__chip">{{ stackItem }}</span>
       {% endfor %}

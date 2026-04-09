@@ -4,19 +4,21 @@
   {% if sectionDataTier %}data-tier-panel="{{ sectionDataTier }}"{% endif %}
   {% if sectionHidden %}hidden{% endif %}
 >
-  <div class="section-heading">
-    {% if sectionTitleHref %}
-      <a class="section-heading-link" href="{{ sectionTitleHref }}">
-        <p class="eyebrow">{{ sectionEyebrow }}</p>
-        <h2>{{ sectionTitle }}</h2>
-        <p>{{ sectionDescription }}</p>
-      </a>
-    {% else %}
-      <p class="eyebrow">{{ sectionEyebrow }}</p>
-      <h2>{{ sectionTitle }}</h2>
-      <p>{{ sectionDescription }}</p>
-    {% endif %}
-  </div>
+  {% if sectionEyebrow or sectionTitle or sectionDescription %}
+    <div class="section-heading">
+      {% if sectionTitleHref %}
+        <a class="section-heading-link" href="{{ sectionTitleHref }}">
+          {% if sectionEyebrow %}<p class="eyebrow">{{ sectionEyebrow }}</p>{% endif %}
+          {% if sectionTitle %}<h2>{{ sectionTitle }}</h2>{% endif %}
+          {% if sectionDescription %}<p>{{ sectionDescription }}</p>{% endif %}
+        </a>
+      {% else %}
+        {% if sectionEyebrow %}<p class="eyebrow">{{ sectionEyebrow }}</p>{% endif %}
+        {% if sectionTitle %}<h2>{{ sectionTitle }}</h2>{% endif %}
+        {% if sectionDescription %}<p>{{ sectionDescription }}</p>{% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
   {% if sectionProjects and sectionProjects.length %}
     <div class="project-grid">
       {% for project in sectionProjects %}
