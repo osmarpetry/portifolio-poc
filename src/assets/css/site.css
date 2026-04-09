@@ -18,6 +18,7 @@
   --space-1: 0.5rem;
   --space-2: 0.875rem;
   --space-3: 1.25rem;
+  --space-section: 1.5rem;
   --space-4: 1.75rem;
   --space-5: 2.5rem;
   --space-6: 4rem;
@@ -169,7 +170,7 @@ button:focus-visible {
 }
 
 .section {
-  padding: var(--space-7) 0;
+  padding: var(--space-section) 0;
   scroll-margin-top: 6rem;
 }
 
@@ -253,16 +254,6 @@ button:focus-visible {
 
 .hero .action-link--primary:hover {
   background: rgba(255, 255, 255, 0.9);
-}
-
-.action-link--hero {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #fff;
-}
-
-.action-link--hero:hover {
-  background: rgba(255, 255, 255, 0.22);
 }
 
 .hero-socials {
@@ -432,7 +423,7 @@ li {
 }
 
 .tier-section + .tier-section {
-  margin-top: var(--space-7);
+  margin-top: var(--space-section);
 }
 
 .tier-section__cta {
@@ -1024,14 +1015,6 @@ li {
 
   .nav-shell.is-open .nav-toggle__line:nth-child(3) {
     transform: translateY(0) rotate(-45deg);
-  }
-
-  .section {
-    padding: 4.5rem 0;
-  }
-
-  .tier-section + .tier-section {
-    margin-top: 4.5rem;
   }
 
   .hero {
