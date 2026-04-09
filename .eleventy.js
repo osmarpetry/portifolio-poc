@@ -1,5 +1,7 @@
 const path = require("node:path");
 const { mkdir, stat, writeFile } = require("node:fs/promises");
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
 const sharp = require("sharp");
 
 const contactProject = require("./src/_data/contact-project");
@@ -16,6 +18,44 @@ const pngQuality = 80;
 const pngEffort = 10;
 const webpQuality = 76;
 const responsiveImageCache = new Map();
+const markdownLinkPattern = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+const readableDateFormatter = new Intl.DateTimeFormat("en", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+function normalizeRouteSlug(value = "") {
+  return String(value)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9\s_-]/g, "")
+    .trim()
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function formatDateISO(value) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toISOString().slice(0, 10);
+}
+
+function formatReadableDate(value) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return readableDateFormatter.format(date);
+}
 
 function escapeAttribute(value) {
   return String(value)
@@ -243,9 +283,94 @@ function renderResponsivePicture(imageData, alt, sizes, options = {}) {
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.ignores.add("COMPANY_RESUME_UPDATE_NOTES.md");
 
   // Legacy global data — kept for backward compat while transitioning
   eleventyConfig.addGlobalData("contactProject", contactProject);
+  eleventyConfig.addFilter("normalizeSlug", normalizeRouteSlug);
+  eleventyConfig.addFilter("dateISO", formatDateISO);
+  eleventyConfig.addFilter("readableDate", formatReadableDate);
+
+  const md = markdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+  });
+
+  md.use(markdownItAnchor, {
+    level: [1, 2, 3, 4],
+    slugify: (value) => normalizeRouteSlug(value) || "section",
+    tabIndex: false,
+  });
+
+  const defaultTextRule =
+    md.renderer.rules.text ||
+    function renderText(tokens, idx) {
+      return tokens[idx].content;
+    };
+
+  md.renderer.rules.text = function renderWikiLinks(tokens, idx, options, env, renderer) {
+    const content = tokens[idx].content;
+
+    if (!content.includes("[[")) {
+      return defaultTextRule(tokens, idx, options, env, renderer);
+    }
+
+    return content.replace(markdownLinkPattern, (_, rawSlug, label) => {
+      const slug = normalizeRouteSlug(rawSlug);
+      const text =
+        label ||
+        rawSlug
+          .replace(/[-_]+/g, " ")
+          .replace(/\b\w/g, (character) => character.toUpperCase());
+
+      return `<a href="/posts/${slug}/">${escapeAttribute(text)}</a>`;
+    });
+  };
+
+  const defaultLinkRender =
+    md.renderer.rules.link_open ||
+    function renderLink(tokens, idx, options, env, renderer) {
+      return renderer.renderToken(tokens, idx, options);
+    };
+
+  md.renderer.rules.link_open = function renderExternalLinks(tokens, idx, options, env, renderer) {
+    const token = tokens[idx];
+    const href = token.attrGet("href");
+
+    if (href && /^(https?:)?\/\//i.test(href)) {
+      token.attrSet("target", "_blank");
+      token.attrSet("rel", "noreferrer");
+    }
+
+    return defaultLinkRender(tokens, idx, options, env, renderer);
+  };
+
+  eleventyConfig.setLibrary("md", md);
+
+  eleventyConfig.addCollection("posts", (collection) =>
+    collection
+      .getFilteredByGlob("content/posts/*.md")
+      .sort((left, right) => new Date(right.date) - new Date(left.date)),
+  );
+
+  eleventyConfig.addCollection("postTagList", (collection) => {
+    const tagsBySlug = new Map();
+
+    for (const post of collection.getFilteredByGlob("content/posts/*.md")) {
+      for (const tag of post.data.tags || []) {
+        const slug = normalizeRouteSlug(tag);
+
+        if (slug && !tagsBySlug.has(slug)) {
+          tagsBySlug.set(slug, tag);
+        }
+      }
+    }
+
+    return Array.from(tagsBySlug, ([slug, label]) => ({ slug, label })).sort((left, right) =>
+      left.label.localeCompare(right.label),
+    );
+  });
 
   eleventyConfig.addNunjucksAsyncShortcode(
     "responsiveImage",
@@ -302,10 +427,12 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: "src",
-      includes: "_includes",
+      input: ".",
+      includes: "src/_includes",
+      data: "src/_data",
       output: "_site",
     },
+    templateFormats: ["njk", "md", "html"],
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",

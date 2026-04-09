@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+permalink: /posts/index.html
+canonicalPath: /posts/
+pageTitle: "Posts — Osmar Petry"
+showAboutAtPageEnd: false
+---
+<section class="section section-posts-index" data-posts-index>
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Posts</p>
+      <h1 id="posts-index-heading">Posts.</h1>
+      <p>
+        Imported markdown notes and articles rendered directly from
+        <code>content/posts/</code>, with routing and UI handled by this site.
+      </p>
+    </div>
+
+    <div class="posts-filter">
+      <details class="posts-filter__details" open>
+        <summary class="posts-filter__summary">
+          <span>Filter by tag</span>
+          <span class="posts-filter__status" data-posts-filter-status>
+            {{ collections.postTagList | length }} tags
+          </span>
+        </summary>
+        <div class="posts-filter__chips">
+          <button
+            class="posts-filter__chip is-active"
+            type="button"
+            data-posts-filter-tag=""
+          >
+            All posts
+          </button>
+          {% for tag in collections.postTagList %}
+            <button
+              class="posts-filter__chip"
+              type="button"
+              data-posts-filter-tag="{{ tag.slug }}"
+            >
+              {{ tag.label }}
+            </button>
+          {% endfor %}
+        </div>
+      </details>
+    </div>
+
+    <ul class="posts-index-list" role="list">
+      {% for post in collections.posts %}
+        {% set tagSlugs = [] %}
+        {% for tag in post.data.tags or [] %}
+          {% set tagSlugs = (tagSlugs.push(tag | normalizeSlug), tagSlugs) %}
+        {% endfor %}
+        <li class="posts-index-item" data-post-item data-post-tags="{{ tagSlugs | join(',') }}">
+          <a class="posts-index-card" href="{{ post.url }}">
+            <div class="posts-index-card__meta">
+              <time datetime="{{ post.date | dateISO }}">{{ post.date | readableDate }}</time>
+            </div>
+            <h2 class="posts-index-card__title">{{ post.data.title }}</h2>
+            {% if post.data.tags %}
+              <div class="posts-index-card__tags" aria-label="Post tags">
+                {% for tag in post.data.tags %}
+                  <span class="posts-index-card__tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+            {% if post.data.description %}
+              <p class="posts-index-card__description">{{ post.data.description }}</p>
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p class="posts-index-empty" data-posts-empty hidden>
+      No posts matched the selected tag.
+    </p>
+  </div>
+</section>

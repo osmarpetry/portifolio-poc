@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+showAboutAtPageEnd: false
+---
+<section class="section section-markdown-page">
+  <div class="container">
+    <article class="markdown-page resume-page" data-content-page data-resume-page>
+      <header class="markdown-page__header resume-page__header">
+        <div class="markdown-page__header-copy">
+          <p class="eyebrow">Resume</p>
+          <p class="markdown-page__intro">
+            Markdown version for quick reading, direct section links, and PDF export.
+          </p>
+        </div>
+        <div class="resume-page__actions">
+          <a
+            class="action-link action-link--primary"
+            href="/assets/resume/osmar-petry-resume-en.pdf"
+            download
+            >Download PDF</a
+          >
+          <a
+            class="action-link action-link--secondary"
+            href="/assets/resume/osmar-petry-resume-en.pdf"
+            target="_blank"
+            rel="noreferrer"
+            >Open PDF</a
+          >
+          <button
+            class="action-link action-link--secondary"
+            type="button"
+            data-copy-page-link
+          >
+            Copy link
+          </button>
+        </div>
+      </header>
+
+      <div class="markdown-prose resume-prose" data-copy-headings="h1,h2,h3">
+        {{ content | safe }}
+      </div>
+    </article>
+  </div>
+</section>

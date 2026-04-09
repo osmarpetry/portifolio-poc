@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% set resolvedTitle = pageTitle or title or site.title %}
+    {% set resolvedDescription = description or site.description %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ pageTitle or site.title }}</title>
-    <meta name="description" content="{{ site.description }}" />
+    <title>{{ resolvedTitle }}</title>
+    <meta name="description" content="{{ resolvedDescription }}" />
     <meta name="theme-color" content="{{ site.themeColor }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="{{ site.shortName }}" />
     <link rel="canonical" href="{{ site.url }}{{ canonicalPath or page.url }}" />
-    <meta property="og:title" content="{{ pageTitle or site.title }}" />
-    <meta property="og:description" content="{{ site.description }}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ resolvedTitle }}" />
+    <meta property="og:description" content="{{ resolvedDescription }}" />
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
     <meta property="og:url" content="{{ site.url }}{{ canonicalPath or page.url }}" />
     <meta property="og:site_name" content="{{ site.title }}" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -73,5 +75,6 @@
     {% include "partials/footer.njk" %}
     <script src="/assets/js/pwa.js" defer></script>
     <script src="/assets/js/projects-query.js" defer></script>
+    <script src="/assets/js/content-page.js" defer></script>
   </body>
 </html>
