@@ -6,25 +6,24 @@ ogType: article
 <section class="section section-markdown-page">
   <div class="container">
     <article class="markdown-page post-page" data-content-page data-post-page>
-      <header class="markdown-page__header post-page__header">
-        <p class="eyebrow">Post</p>
-        <h1 class="markdown-page__title" id="{{ title | normalizeSlug }}">{{ title }}</h1>
-        <div class="markdown-page__meta">
-          <time datetime="{{ page.date | dateISO }}">{{ page.date | readableDate }}</time>
-          {% if tags and tags.length %}
-            <div class="markdown-page__tags" aria-label="Post tags">
-              {% for tag in tags %}
-                <span class="markdown-page__tag">{{ tag }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-        {% if description %}
-          <p class="markdown-page__description">{{ description }}</p>
-        {% endif %}
-      </header>
-
       <div class="markdown-prose post-prose" data-copy-headings="h1,h2,h3,h4" data-copy-code="true">
+        <header class="post-page__header">
+          <p class="eyebrow">Post</p>
+          <h1 class="markdown-page__title" id="{{ title | normalizeSlug }}">{{ title }}</h1>
+          <div class="markdown-page__meta">
+            <time datetime="{{ page.date | dateISO }}">{{ page.date | readableDate }}</time>
+            {% if tags and tags.length %}
+              <div class="markdown-page__tags" aria-label="Post tags">
+                {% for tag in tags %}
+                  <span class="markdown-page__tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          {% if description %}
+            <p class="markdown-page__description">{{ description }}</p>
+          {% endif %}
+        </header>
         {{ content | safe }}
       </div>
     </article>

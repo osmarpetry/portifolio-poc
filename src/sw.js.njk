@@ -103,6 +103,62 @@ async function respondWithCachedDocument(request) {
   });
 }
 
+async function respondWithNetworkFirst(request) {
+  const networkResponse = await fetchAndCache(request);
+
+  if (networkResponse) {
+    return networkResponse;
+  }
+
+  const cachedResponse = await caches.match(request);
+
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+
+  if (request.destination === "document") {
+    return respondWithCachedDocument(request);
+  }
+
+  return new Response("", {
+    status: 504,
+    statusText: "Offline",
+  });
+}
+
+async function respondWithCacheFirst(request, revalidate) {
+  const cachedResponse = await caches.match(request);
+
+  if (cachedResponse) {
+    if (typeof revalidate === "function") {
+      revalidate();
+    }
+    return cachedResponse;
+  }
+
+  const networkResponse = await fetchAndCache(request);
+
+  if (networkResponse) {
+    return networkResponse;
+  }
+
+  if (request.destination === "document") {
+    if (/\.[a-z0-9]+$/i.test(new URL(request.url).pathname)) {
+      return new Response("", {
+        status: 504,
+        statusText: "Offline",
+      });
+    }
+
+    return respondWithCachedDocument(request);
+  }
+
+  return new Response("", {
+    status: 504,
+    statusText: "Offline",
+  });
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -117,51 +173,20 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (request.mode === "navigate" && !isFileRequest) {
-    event.respondWith(
-      (async () => {
-        const networkResponse = await fetchAndCache(request);
+  const shouldUseNetworkFirst =
+    (request.mode === "navigate" && !isFileRequest) ||
+    request.destination === "script" ||
+    request.destination === "style" ||
+    request.destination === "manifest";
 
-        if (networkResponse) {
-          return networkResponse;
-        }
-
-        return respondWithCachedDocument(request);
-      })()
-    );
+  if (shouldUseNetworkFirst) {
+    event.respondWith(respondWithNetworkFirst(request));
     return;
   }
 
   event.respondWith(
-    (async () => {
-      const cachedResponse = await caches.match(request);
-
-      if (cachedResponse) {
-        event.waitUntil(fetchAndCache(request));
-        return cachedResponse;
-      }
-
-      const networkResponse = await fetchAndCache(request);
-
-      if (networkResponse) {
-        return networkResponse;
-      }
-
-      if (request.destination === "document") {
-        if (isFileRequest) {
-          return new Response("", {
-            status: 504,
-            statusText: "Offline",
-          });
-        }
-
-        return respondWithCachedDocument(request);
-      }
-
-      return new Response("", {
-        status: 504,
-        statusText: "Offline",
-      });
-    })()
+    respondWithCacheFirst(request, () => {
+      event.waitUntil(fetchAndCache(request));
+    }),
   );
 });

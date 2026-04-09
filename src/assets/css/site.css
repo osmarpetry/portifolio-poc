@@ -367,8 +367,6 @@ li {
   text-decoration: none;
   font-size: 0.94rem;
   font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
 }
 
 .action-link--primary {
@@ -2059,11 +2057,6 @@ li {
   line-height: 1;
 }
 
-.resume-page__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
 
 .markdown-prose {
   padding: clamp(1.25rem, 2vw, 2rem);
@@ -2157,7 +2150,16 @@ li {
   line-height: 1.6;
 }
 
+.post-page__header {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
 .markdown-prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   border-collapse: collapse;
 }
@@ -2174,13 +2176,146 @@ li {
   font-size: 0.84rem;
 }
 
-.resume-prose p:first-of-type {
-  color: var(--text-muted);
+/* ---- Resume prose overrides ---- */
+
+.resume-prose {
+  position: relative;
 }
 
-.resume-prose h3 + p,
-.resume-prose h3 + p + p {
-  margin-bottom: 0.35rem;
+/* Floating download PDF icon button — top-right corner of the prose card */
+.resume-pdf-btn {
+  position: absolute;
+  top: clamp(1.25rem, 2vw, 2rem);
+  right: clamp(1.25rem, 2vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.resume-pdf-btn:hover {
+  color: var(--purple-dark);
+  border-color: rgba(82, 66, 124, 0.35);
+  background: var(--purple-pale);
+}
+
+/* Name: very large, tight margin into subtitle */
+.resume-prose h1 {
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.03em;
+}
+
+/* Section headings (Summary, Core Skills, Experience, Education) */
+.resume-prose h2 {
+  font-size: 0.9rem;
+  font-family: Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin: 2rem 0 0.85rem;
+}
+
+/* Subtitle — h2 immediately after h1, styled as role label not section heading */
+.resume-prose h1 + h2 {
+  font-size: 1.05rem;
+  font-family: Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--purple-dark);
+  padding-bottom: 0;
+  border-bottom: none;
+  margin: 0 0 1rem;
+}
+
+/* Contact info: vertical list on mobile, inline with separators on desktop.
+   Uses .resume-prose .resume-contact to beat .markdown-prose ul specificity. */
+.resume-prose .resume-contact {
+  display: block;
+  list-style: none;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.resume-prose .resume-contact li {
+  display: block;
+}
+
+.resume-prose .resume-contact li + li {
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 640px) {
+  .resume-prose .resume-contact li {
+    display: inline;
+  }
+
+  .resume-prose .resume-contact li + li {
+    margin-top: 0;
+  }
+
+  .resume-prose .resume-contact li + li::before {
+    content: "·";
+    margin: 0 0.55rem;
+    color: var(--border-strong);
+  }
+}
+
+.resume-prose .resume-contact a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.resume-prose .resume-contact a:hover {
+  color: var(--purple-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+}
+
+/* Company name */
+.resume-prose h3 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.1rem;
+}
+
+/* Job title — override the generic h4 Georgia serif */
+.resume-prose h4 {
+  font-size: 0.95rem;
+  font-family: Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--text);
+  margin: 0 0 0.2rem;
+}
+
+/* Hide anchor copy button on job title h4s */
+.resume-prose h4 .heading-anchor-button {
+  display: none;
+}
+
+/* Location · Date meta line */
+.resume-prose h4 + p {
+  margin: 0 0 0.65rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
 }
 
 .linkable-heading {
@@ -2338,27 +2473,11 @@ li {
 }
 
 @media (max-width: 700px) {
-  .markdown-page__header,
-  .resume-page__actions,
   .posts-filter__summary {
     align-items: stretch;
   }
 
-  .resume-page__actions {
-    width: 100%;
-  }
-
-  .resume-page__actions .action-link {
-    width: 100%;
-  }
-
   .linkable-heading {
     align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .heading-anchor-button,
-  .prose-code-block__copy {
-    opacity: 1;
   }
 }

@@ -1,12 +1,51 @@
+const cachePrefix = "portfolio-";
+const localhostHosts = new Set(["localhost", "127.0.0.1", "[::1]"]);
+const isLocalDevelopmentHost = localhostHosts.has(window.location.hostname);
+const localSwResetSessionKey = "portfolio-local-sw-reset";
+
+async function clearPortfolioCaches() {
+  if (!("caches" in window)) {
+    return;
+  }
+
+  const cacheKeys = await caches.keys();
+
+  await Promise.all(
+    cacheKeys
+      .filter((cacheKey) => cacheKey.startsWith(cachePrefix))
+      .map((cacheKey) => caches.delete(cacheKey)),
+  );
+}
+
+async function resetLocalServiceWorkers() {
+  const registrations = await navigator.serviceWorker.getRegistrations();
+
+  await Promise.all(registrations.map((registration) => registration.unregister()));
+  await clearPortfolioCaches();
+}
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
+      if (isLocalDevelopmentHost) {
+        const hadController = Boolean(navigator.serviceWorker.controller);
+
+        await resetLocalServiceWorkers();
+
+        if (hadController && !sessionStorage.getItem(localSwResetSessionKey)) {
+          sessionStorage.setItem(localSwResetSessionKey, "true");
+          window.location.reload();
+          return;
+        }
+
+        sessionStorage.removeItem(localSwResetSessionKey);
+        return;
+      }
+
       const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
       });
 
-      // Trigger an update check on each load so refreshed assets can be cached
-      // in the background while the current page still comes from cache first.
       registration.update().catch(() => {});
     } catch (error) {
       console.warn("Service worker registration failed", error);

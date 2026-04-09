@@ -1,4 +1,5 @@
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+(function initContentPage() {
+const contentPageReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function fallbackCopy(text) {
   const textArea = document.createElement("textarea");
@@ -71,7 +72,7 @@ function attachHeadingCopyBehavior() {
         window.history.pushState(null, "", nextHash);
         heading.scrollIntoView({
           block: "start",
-          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          behavior: contentPageReducedMotion.matches ? "auto" : "smooth",
         });
 
         try {
@@ -152,6 +153,19 @@ function attachPostsFilter() {
   const items = Array.from(postsIndex.querySelectorAll("[data-post-item]"));
   const emptyState = postsIndex.querySelector("[data-posts-empty]");
   const status = postsIndex.querySelector("[data-posts-filter-status]");
+  const getTagFromLocation = () => {
+    const hashValue = window.location.hash.replace(/^#/, "").trim();
+
+    if (hashValue) {
+      if (hashValue.startsWith("tag=")) {
+        return decodeURIComponent(hashValue.slice(4));
+      }
+
+      return decodeURIComponent(hashValue);
+    }
+
+    return new URLSearchParams(window.location.search).get("tag") || "";
+  };
 
   const applyFilter = (tagSlug = "") => {
     const normalizedTag = String(tagSlug || "").trim().toLowerCase();
@@ -196,9 +210,11 @@ function attachPostsFilter() {
     const nextUrl = new URL(window.location.href);
 
     if (normalizedTag) {
-      nextUrl.searchParams.set("tag", normalizedTag);
+      nextUrl.searchParams.delete("tag");
+      nextUrl.hash = `tag=${encodeURIComponent(normalizedTag)}`;
     } else {
       nextUrl.searchParams.delete("tag");
+      nextUrl.hash = "";
     }
 
     window.history.replaceState(null, "", `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`);
@@ -210,10 +226,15 @@ function attachPostsFilter() {
     });
   });
 
-  applyFilter(new URLSearchParams(window.location.search).get("tag") || "");
+  window.addEventListener("hashchange", () => {
+    applyFilter(getTagFromLocation());
+  });
+
+  applyFilter(getTagFromLocation());
 }
 
 attachHeadingCopyBehavior();
 attachCodeCopyButtons();
 attachPageLinkButtons();
 attachPostsFilter();
+})();
