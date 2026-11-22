@@ -20,7 +20,7 @@
     "markdown-it": "^15.0.3",
     "markdown-it-anchor": "^10.1.0",
     "nunjucks": "^3.2.4",
-    "playwright": "^1.65.0",
+    "playwright": "^1.65.1",
     "sharp": "^0.35.5",
     "storybook": "^10.3.4",
     "terser": "^5.51.2"
